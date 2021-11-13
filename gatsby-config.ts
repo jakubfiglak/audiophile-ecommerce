@@ -38,6 +38,13 @@ const config: GatsbyConfig = {
         path: './src/images/',
       },
     },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`Manrope: 400, 500, 700`],
+        display: 'swap',
+      },
+    },
   ],
 };
 
