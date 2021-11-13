@@ -4,21 +4,21 @@ module.exports = {
     title: "Audiophile e-commerce",
   },
   plugins: [
-    {
-      resolve: "gatsby-source-sanity",
-      options: {
-        projectId: "",
-        dataset: "",
-      },
-    },
+    // {
+    //   resolve: "gatsby-source-sanity",
+    //   options: {
+    //     projectId: "",
+    //     dataset: "",
+    //   },
+    // },
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        trackingId: "",
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-google-analytics",
+    //   options: {
+    //     trackingId: "",
+    //   },
+    // },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     {
