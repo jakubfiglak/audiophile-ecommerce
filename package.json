@@ -8,11 +8,12 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "concurrently \"npm start\" \"npm run studio\"",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "studio": "npm start --prefix studio"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.13.3",
@@ -40,6 +41,7 @@
     "@types/styled-components": "^5.1.15",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",
+    "concurrently": "^6.4.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^19.0.0",
     "eslint-config-prettier": "^8.3.0",
