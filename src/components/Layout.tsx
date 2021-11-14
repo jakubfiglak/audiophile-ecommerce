@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react';
+import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from '../styles/GlobalStyle';
+import { theme } from '../styles/theme';
 
 type Props = {
   children: ReactNode;
@@ -7,9 +9,9 @@ type Props = {
 
 export const Layout = ({ children }: Props) => {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       {children}
-    </div>
+    </ThemeProvider>
   );
 };
