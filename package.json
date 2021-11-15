@@ -8,7 +8,6 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "concurrently \"npm start\" \"npm run studio\"",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
@@ -54,7 +53,6 @@
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",
     "babel-loader": "^8.2.3",
-    "concurrently": "^6.4.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^19.0.0",
     "eslint-config-prettier": "^8.3.0",
