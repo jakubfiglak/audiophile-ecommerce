@@ -45,6 +45,14 @@ const config: GatsbyConfig = {
         display: 'swap',
       },
     },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/,
+        },
+      },
+    },
   ],
 };
 
