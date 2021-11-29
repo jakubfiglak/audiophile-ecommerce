@@ -7,5 +7,7 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     fontWeight: Theme['fontWeight'];
     colors: Theme['colors'];
+    breakpoints: Theme['breakpoints'];
+    transition: Theme['transition'];
   }
 }

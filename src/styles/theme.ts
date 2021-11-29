@@ -1,3 +1,5 @@
+import { breakpoints } from './breakpoints';
+
 export const theme = {
   fontWeight: {
     light: 400,
@@ -13,4 +15,6 @@ export const theme = {
     gray: '#f1f1f1',
     lightGray: '#fafafa',
   },
+  transition: 'all 0.2s',
+  breakpoints,
 };
