@@ -4,16 +4,19 @@ import earphonesCardImage from './assets/images/image-category-thumbnail-earphon
 
 export const categoriesCardData = [
   {
+    id: 1,
     title: 'headphones',
     image: headphonesCardImage,
     linkTo: '/headphones',
   },
   {
+    id: 2,
     title: 'speakers',
     image: speakersCardImage,
     linkTo: '/speakers',
   },
   {
+    id: 3,
     title: 'earphones',
     image: earphonesCardImage,
     linkTo: '/earphones',
