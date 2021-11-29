@@ -1,26 +1,24 @@
 import { GatsbyConfig } from 'gatsby';
 
+require('dotenv').config({
+  path: '.env',
+});
+
 const config: GatsbyConfig = {
   siteMetadata: {
     siteUrl: 'https://www.yourdomain.tld',
     title: 'Audiophile e-commerce',
   },
   plugins: [
-    // {
-    //   resolve: "gatsby-source-sanity",
-    //   options: {
-    //     projectId: "",
-    //     dataset: "",
-    //   },
-    // },
+    {
+      resolve: 'gatsby-source-sanity',
+      options: {
+        projectId: process.env.SANITY_PROJECT_ID,
+        dataset: process.env.SANITY_DATASET,
+      },
+    },
     'gatsby-plugin-styled-components',
     'gatsby-plugin-image',
-    // {
-    //   resolve: "gatsby-plugin-google-analytics",
-    //   options: {
-    //     trackingId: "",
-    //   },
-    // },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     {
