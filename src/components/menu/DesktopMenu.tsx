@@ -23,7 +23,7 @@ const StyledContainer = styled.div`
   }
 `;
 
-type Props = {
+export type Props = {
   className?: string;
 };
 
