@@ -2,14 +2,14 @@ import React from 'react';
 
 import { Story, Meta } from '@storybook/react';
 
-import { Nav } from './Nav';
+import { Header } from './Header';
 
 export default {
-  component: Nav,
-  title: 'Components/Nav',
+  component: Header,
+  title: 'Components/Header',
 } as Meta;
 
-const Template: Story = () => <Nav />;
+const Template: Story = () => <Header />;
 
 export const Main = Template.bind({});
 
