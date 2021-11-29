@@ -51,6 +51,22 @@ const config: GatsbyConfig = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-graphql-codegen',
+      options: {
+        fileName: './graphql/generated-types.ts',
+        codegenConfig: {
+          avoidOptionals: true,
+          maybeValue: 'T',
+          inputMaybeValue: 'T',
+        },
+        documentPaths: [
+          './src/**/*.{ts,tsx}',
+          './node_modules/gatsby-*/**/*.js',
+          './gatsby-node.ts',
+        ],
+      },
+    },
   ],
 };
 
