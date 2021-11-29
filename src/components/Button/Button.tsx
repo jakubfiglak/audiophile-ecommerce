@@ -33,7 +33,7 @@ const StyledButton = styled.button<StylesProps>`
   border: none;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: ${({ theme }) => theme.transition};
 
   ${({ secondary }) => (secondary ? secondaryBorder : '')}
 

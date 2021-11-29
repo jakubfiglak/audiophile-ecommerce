@@ -22,7 +22,7 @@ const StyledLink = styled(Link)`
   span {
     margin-right: 1.3rem;
     opacity: 0.5;
-    transition: all 0.2s;
+    transition: ${({ theme }) => theme.transition};
   }
 
   :hover {

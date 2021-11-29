@@ -4,18 +4,35 @@ import { normalize } from 'styled-normalize';
 export const GlobalStyle = createGlobalStyle`
 ${normalize}
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
 html {
 	font-size: 62.5%; 
-	height: 100%; 
 	width: 100%; 
 	overflow-y: scroll; 
 }
 
 body {
-  box-sizing: border-box;
   font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1.6rem;
   text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+}
+
+ul
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 body,
@@ -31,15 +48,17 @@ dd {
   margin: 0;
 }
 
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
-img,
-picture {
+img, picture, video, canvas, svg {
   max-width: 100%;
   display: block;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
 }
 
 h1, h2, h3, h4, h5, h6 {
