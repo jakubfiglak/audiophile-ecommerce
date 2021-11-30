@@ -6,6 +6,7 @@ import HamburgerIcon from '../../assets/svg/icon-hamburger.svg';
 import CartIcon from '../../assets/svg/icon-cart.svg';
 import Logo from '../../assets/svg/logo.svg';
 import { breakpointFrom } from '../../styles/breakpoints';
+import { MobileMenu } from '../menu/MobileMenu';
 
 const StyledHeader = styled.header`
   background: ${({ theme }) => theme.colors.darkGray};
@@ -55,6 +56,12 @@ const StyledDesktopMenu = styled(DesktopMenu)`
   }
 `;
 
+const StyledMobileMenu = styled(MobileMenu)`
+  ${breakpointFrom('desktop')} {
+    display: none;
+  }
+`;
+
 export const Header = () => {
   return (
     <StyledHeader>
@@ -65,6 +72,7 @@ export const Header = () => {
           <StyledDesktopMenu />
           <CartIcon className="cart" />
         </StyledContainer>
+        <StyledMobileMenu />
       </LayoutContentWrapper>
     </StyledHeader>
   );
