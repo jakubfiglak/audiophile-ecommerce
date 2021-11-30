@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
+import { DesktopMenuQuery } from '../../../graphql/generated-types';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -28,20 +29,32 @@ export type Props = {
 };
 
 export const DesktopMenu = ({ className }: Props) => {
+  const data = useStaticQuery<DesktopMenuQuery>(graphql`
+    query DesktopMenu {
+      allSanityCategory {
+        nodes {
+          id
+          name
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `);
+
+  const categories = data.allSanityCategory.nodes;
+
   return (
     <StyledContainer className={className}>
       <li>
         <Link to="/">home</Link>
       </li>
-      <li>
-        <Link to="/headphones">headphones</Link>
-      </li>
-      <li>
-        <Link to="/speakers">speakers</Link>
-      </li>
-      <li>
-        <Link to="/earphones">earphones</Link>
-      </li>
+      {categories.map(({ id, slug, name }) => (
+        <li key={id}>
+          <Link to={slug.current}>{name}</Link>
+        </li>
+      ))}
     </StyledContainer>
   );
 };
