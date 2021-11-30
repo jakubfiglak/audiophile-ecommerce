@@ -2,7 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import styled from 'styled-components';
 import { CategoryCard, Props } from './CategoryCard';
-import { categoriesCardData } from '../../data';
+import speakerImage from '../../assets/images/image-category-thumbnail-speakers.png';
 
 export default {
   component: CategoryCard,
@@ -22,6 +22,12 @@ const Template: Story<Props> = (args) => (
 
 export const Category = Template.bind({});
 
+const data: Props = {
+  title: 'Speakers',
+  image: speakerImage,
+  linkTo: '/speakers',
+};
+
 Category.args = {
-  ...categoriesCardData[0],
+  ...data,
 };
