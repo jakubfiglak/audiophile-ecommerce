@@ -1,16 +1,19 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { CategoryCard } from '../category-card/CategoryCard';
 import { MobileMenuQuery } from '../../../graphql/generated-types';
 import { breakpointFrom } from '../../styles/breakpoints';
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 6.8rem;
   padding: 8.4rem 2.4rem 3.5rem;
   background: ${({ theme }) => theme.colors.white};
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 
   ${breakpointFrom('tablet')} {
     flex-direction: row;
@@ -19,11 +22,17 @@ const StyledContainer = styled.div`
   }
 `;
 
-const StyledCardWrapper = styled.div`
+const StyledCardWrapper = styled(motion.div)`
   flex: 1;
 `;
 
 type Props = { className?: string };
+
+const variants = {
+  hidden: { opacity: 0, y: 100 },
+  show: { opacity: 1, y: 0 },
+  exit: { opacity: 0 },
+};
 
 export const MobileMenu = ({ className }: Props) => {
   const data = useStaticQuery<MobileMenuQuery>(graphql`
@@ -51,7 +60,7 @@ export const MobileMenu = ({ className }: Props) => {
   return (
     <StyledContainer className={className}>
       {categories.map(({ id, name, slug, image }) => (
-        <StyledCardWrapper key={id}>
+        <StyledCardWrapper key={id} variants={variants}>
           <CategoryCard
             title={name}
             linkTo={`/${slug.current}`}
