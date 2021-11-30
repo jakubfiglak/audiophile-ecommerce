@@ -1,10 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { LinkButton } from '../buttons/LinkButton';
+import { IImage } from '../../../graphql/types';
 
 export type Props = {
   title: string;
-  image: string;
+  image: IImage | string;
   linkTo: string;
 };
 
@@ -18,12 +20,20 @@ const StyledContainer = styled.div`
   padding: 9rem 0 2.2rem;
 `;
 
-const StyledImg = styled.img`
+const imageStyles = css`
   position: absolute;
-  width: 80%;
+  width: 150px;
   left: 50%;
-  top: -40%;
+  top: -50px;
   transform: translateX(-50%);
+`;
+
+const StyledGatsbyImage = styled(GatsbyImage)`
+  ${imageStyles}
+`;
+
+const StyledImage = styled.img`
+  ${imageStyles}
 `;
 
 const StyledHeading = styled.h4`
@@ -37,7 +47,12 @@ const StyledHeading = styled.h4`
 export const CategoryCard = ({ title, image, linkTo }: Props) => {
   return (
     <StyledContainer>
-      <StyledImg src={image} alt={title} />
+      {typeof image === 'string' ? (
+        <StyledImage src={image} alt={title} />
+      ) : (
+        <StyledGatsbyImage image={image.data} alt={image.alt} />
+      )}
+
       <StyledHeading>{title}</StyledHeading>
       <LinkButton to={linkTo} label="shop" />
     </StyledContainer>

@@ -5220,6 +5220,16 @@ export type ImageSharpSortInput = {
   order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
+export type DesktopMenuQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type DesktopMenuQuery = { allSanityCategory: { nodes: Array<{ id: string, name: string, slug: { current: string } }> } };
+
+export type MobileMenuQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MobileMenuQuery = { allSanityCategory: { nodes: Array<{ id: string, name: string, slug: { current: string }, image: { alt: string, asset: { gatsbyImageData: any } } }> } };
+
 export type GatsbyImageSharpFixedFragment = { base64: string, width: number, height: number, src: string, srcSet: string };
 
 export type GatsbyImageSharpFixed_TracedSvgFragment = { tracedSVG: string, width: number, height: number, src: string, srcSet: string };

@@ -1,23 +1,71 @@
 import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { CategoryCard } from '../category-card/CategoryCard';
-import { categoriesCardData } from '../../data';
+import { MobileMenuQuery } from '../../../graphql/generated-types';
+import { breakpointFrom } from '../../styles/breakpoints';
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.nav`
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 6.8rem;
+  padding: 8.4rem 2.4rem 3.5rem;
+  background: ${({ theme }) => theme.colors.white};
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+
+  ${breakpointFrom('tablet')} {
+    flex-direction: row;
+    padding: 10.8rem 4rem 6.7rem;
+    gap: 1rem;
+  }
 `;
 
-const StyledCardWrapper = styled.div`
+const StyledCardWrapper = styled(motion.div)`
   flex: 1;
 `;
 
-export const MobileMenu = () => {
+type Props = { className?: string };
+
+const variants = {
+  hidden: { opacity: 0, y: 100 },
+  show: { opacity: 1, y: 0 },
+  exit: { opacity: 0 },
+};
+
+export const MobileMenu = ({ className }: Props) => {
+  const data = useStaticQuery<MobileMenuQuery>(graphql`
+    query MobileMenu {
+      allSanityCategory {
+        nodes {
+          id
+          name
+          slug {
+            current
+          }
+          image {
+            alt
+            asset {
+              gatsbyImageData(placeholder: BLURRED)
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const categories = data.allSanityCategory.nodes;
+
   return (
-    <StyledContainer>
-      {categoriesCardData.map(({ id, ...props }) => (
-        <StyledCardWrapper key={id}>
-          <CategoryCard {...props} />
+    <StyledContainer className={className}>
+      {categories.map(({ id, name, slug, image }) => (
+        <StyledCardWrapper key={id} variants={variants}>
+          <CategoryCard
+            title={name}
+            linkTo={`/${slug.current}`}
+            image={{ data: image.asset.gatsbyImageData, alt: image.alt }}
+          />
         </StyledCardWrapper>
       ))}
     </StyledContainer>
