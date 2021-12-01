@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import styled, { css } from 'styled-components';
 
 export type StylesProps = {
@@ -20,14 +21,14 @@ const secondaryBorder = css`
   }
 `;
 
-const StyledButton = styled.button<StylesProps>`
+const styles = ({ secondary }: StylesProps) => css`
   font-size: 1.3rem;
   line-height: 1.8rem;
   letter-spacing: 1px;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  background: ${({ secondary, theme }) =>
+  background: ${({ theme }) =>
     secondary ? theme.colors.white : theme.colors.primary};
-  color: ${({ secondary, theme }) =>
+  color: ${({ theme }) =>
     secondary ? theme.colors.black : theme.colors.white};
   padding: 1.5rem 3rem;
   border: none;
@@ -35,17 +36,39 @@ const StyledButton = styled.button<StylesProps>`
   cursor: pointer;
   transition: ${({ theme }) => theme.transition};
 
-  ${({ secondary }) => (secondary ? secondaryBorder : '')}
+  ${secondary ? secondaryBorder : ''}
 
   :hover {
-    background: ${({ theme, secondary }) =>
+    background: ${({ theme }) =>
       secondary ? theme.colors.black : theme.colors.primaryLight};
-    color: ${({ theme, secondary }) => (secondary ? theme.colors.white : '')};
+    color: ${({ theme }) => (secondary ? theme.colors.white : '')};
   }
 `;
 
-export type Props = StylesProps & { label: string };
+const StyledButton = styled.button<StylesProps>`
+  ${({ secondary }) => styles({ secondary })}
+`;
 
-export const Button = ({ label, secondary }: Props) => {
-  return <StyledButton secondary={secondary}>{label}</StyledButton>;
+const StyledLink = styled(Link)<StylesProps>`
+  ${({ secondary }) => styles({ secondary })}
+`;
+
+export type CommonProps = StylesProps & { label: string };
+export type ButtonProps = CommonProps & { onClick?: () => void };
+export type LinkProps = CommonProps & { to: string };
+
+export const Button = ({ label, secondary, onClick }: ButtonProps) => {
+  return (
+    <StyledButton secondary={secondary} onClick={onClick}>
+      {label}
+    </StyledButton>
+  );
+};
+
+export const LinkButton = ({ label, secondary, to }: LinkProps) => {
+  return (
+    <StyledLink secondary={secondary} to={to}>
+      {label}
+    </StyledLink>
+  );
 };
