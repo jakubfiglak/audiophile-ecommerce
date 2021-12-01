@@ -10,15 +10,14 @@ const StyledContainer = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 6.8rem;
-  padding: 8.4rem 2.4rem 3.5rem;
-  background: ${({ theme }) => theme.colors.white};
-  border-bottom-left-radius: ${({ theme }) => theme.borderRadius};
-  border-bottom-right-radius: ${({ theme }) => theme.borderRadius};
 
   ${breakpointFrom('tablet')} {
     flex-direction: row;
-    padding: 10.8rem 4rem 6.7rem;
     gap: 1rem;
+  }
+
+  ${breakpointFrom('desktop')} {
+    gap: 3rem;
   }
 `;
 
