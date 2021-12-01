@@ -12,8 +12,8 @@ const StyledContainer = styled.nav`
   gap: 6.8rem;
   padding: 8.4rem 2.4rem 3.5rem;
   background: ${({ theme }) => theme.colors.white};
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: ${({ theme }) => theme.borderRadius};
+  border-bottom-right-radius: ${({ theme }) => theme.borderRadius};
 
   ${breakpointFrom('tablet')} {
     flex-direction: row;

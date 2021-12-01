@@ -16,7 +16,7 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background: ${({ theme }) => theme.colors.gray};
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   padding: 9rem 0 2.2rem;
 `;
 

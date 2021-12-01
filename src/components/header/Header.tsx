@@ -10,11 +10,12 @@ import { breakpointFrom } from '../../styles/breakpoints';
 import { MenuToggle } from '../menu/MenuToggle';
 
 const StyledHeader = styled.header`
-  background: ${({ theme }) => theme.colors.darkGray};
+  z-index: 2;
   position: fixed;
   width: 100%;
   left: 0;
   top: 0;
+  background: ${({ theme }) => theme.colors.darkGray};
 `;
 
 const StyledContainer = styled.div`
@@ -62,13 +63,14 @@ const StyledDesktopMenu = styled(DesktopMenu)`
 `;
 
 const StyledMobileMenuContainer = styled(motion.div)`
+  z-index: 2;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.blackTransparent};
   position: fixed;
   width: 100%;
-  top: 90;
+  top: ${({ theme }) => theme.navHeight};
   left: 0;
-  height: calc(100vh - 90px);
+  min-height: ${({ theme }) => `calc(100vh - ${theme.navHeight})`};
 `;
 
 const StyledMobileMenu = styled(MobileMenu)`
