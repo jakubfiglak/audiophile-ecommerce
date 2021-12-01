@@ -9,5 +9,7 @@ declare module 'styled-components' {
     colors: Theme['colors'];
     breakpoints: Theme['breakpoints'];
     transition: Theme['transition'];
+    navHeight: Theme['navHeight'];
+    borderRadius: Theme['borderRadius'];
   }
 }
