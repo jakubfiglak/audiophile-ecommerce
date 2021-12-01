@@ -62,7 +62,7 @@ const StyledDesktopMenu = styled(DesktopMenu)`
   }
 `;
 
-const StyledMobileMenuContainer = styled(motion.div)`
+const StyledBackdrop = styled(motion.div)`
   z-index: 2;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.blackTransparent};
@@ -71,6 +71,17 @@ const StyledMobileMenuContainer = styled(motion.div)`
   top: ${({ theme }) => theme.navHeight};
   left: 0;
   min-height: ${({ theme }) => `calc(100vh - ${theme.navHeight})`};
+`;
+
+const StyledMobileMenuContainer = styled.div`
+  padding: 8.4rem 2.4rem 3.5rem;
+  background: ${({ theme }) => theme.colors.white};
+  border-bottom-left-radius: ${({ theme }) => theme.borderRadius};
+  border-bottom-right-radius: ${({ theme }) => theme.borderRadius};
+
+  ${breakpointFrom('tablet')} {
+    padding: 10.8rem 4rem 6.7rem;
+  }
 `;
 
 const StyledMobileMenu = styled(MobileMenu)`
@@ -119,15 +130,17 @@ export const Header = () => {
       </StyledHeader>
       <AnimatePresence>
         {isMobileMenuOpen ? (
-          <StyledMobileMenuContainer
+          <StyledBackdrop
             key="mobile-menu"
             variants={variants}
             initial="hidden"
             animate="show"
             exit="exit"
           >
-            <StyledMobileMenu />
-          </StyledMobileMenuContainer>
+            <StyledMobileMenuContainer>
+              <StyledMobileMenu />
+            </StyledMobileMenuContainer>
+          </StyledBackdrop>
         ) : null}
       </AnimatePresence>
     </>
