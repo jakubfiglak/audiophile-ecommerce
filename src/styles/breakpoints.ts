@@ -1,6 +1,6 @@
 export const breakpoints = { mobile: 375, tablet: 768, desktop: 1440 };
 
-type Breakpoint = keyof typeof breakpoints;
+export type Breakpoint = keyof typeof breakpoints;
 
 export const breakpointUpTo = (breakpoint: Breakpoint) => {
   return `@media screen and (max-width:${breakpoints[breakpoint] - 1}px)`;
