@@ -21,7 +21,7 @@ export function mapSanityMainImageToImageData(image: SanityImageData): IImage {
   };
 }
 
-export function mapSanityHeroImagesToHeroImagesData(
+export function mapSanityResponsiveImagesToResponsiveImagesData(
   data: SanityHeroImagesData
 ): IHeroImages {
   return {
