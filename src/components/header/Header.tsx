@@ -4,8 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { LayoutContentWrapper } from '../layout/LayoutContentWrapper';
 import { DesktopMenu } from '../menu/DesktopMenu';
 import { MobileMenu } from '../menu/MobileMenu';
-import CartIcon from '../../assets/svg/icon-cart.svg';
-import Logo from '../../assets/svg/logo.svg';
+import CartIcon from '../../assets/svg/icon-cart.inline.svg';
+import Logo from '../../assets/svg/logo.inline.svg';
 import { breakpointFrom } from '../../styles/breakpoints';
 import { MenuToggle } from '../menu/MenuToggle';
 
@@ -22,12 +22,11 @@ const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3.2rem 2.4rem;
+  padding: 3.2rem 0;
   font-size: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   ${breakpointFrom('tablet')} {
-    padding: 3.2rem 0;
     margin: 0 4rem;
 
     .logo {
@@ -40,7 +39,6 @@ const StyledContainer = styled.div`
   }
 
   ${breakpointFrom('desktop')} {
-    padding: 3.2rem 0;
     margin: 0;
 
     .logo {
