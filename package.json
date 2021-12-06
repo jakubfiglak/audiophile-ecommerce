@@ -17,6 +17,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@sanity/block-content-to-react": "^3.0.0",
     "babel-plugin-styled-components": "^1.13.3",
     "framer-motion": "^5.3.3",
     "gatsby": "^4.1.3",

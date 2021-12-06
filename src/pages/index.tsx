@@ -3,6 +3,7 @@ import { Layout } from '../components/layout/Layout';
 import { HomePageHero } from '../components/hero/HomePageHero';
 import { ExtraMenu } from '../components/menu/ExtraMenu';
 import { FeaturedProductsSection } from '../components/featured-products-section/FeaturedProductsSection';
+import { AboutSection } from '../components/about-section/AboutSection';
 
 const IndexPage = () => {
   return (
@@ -10,6 +11,8 @@ const IndexPage = () => {
       <HomePageHero />
       <ExtraMenu />
       <FeaturedProductsSection />
+      <AboutSection />
+      <p>footer</p>
     </Layout>
   );
 };

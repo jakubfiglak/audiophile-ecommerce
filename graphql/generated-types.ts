@@ -6085,6 +6085,11 @@ export type ImageSharpSortInput = {
 
 export type ImageDataFragment = { alt: string, asset: { gatsbyImageData: any } };
 
+export type AboutSectionQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AboutSectionQuery = { sanityGlobalData: { aboutSection: { _rawTitle: any, text: string, images: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } } } };
+
 export type FeaturedProductsSectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
