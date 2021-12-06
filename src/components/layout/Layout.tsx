@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Header } from '../header/Header';
+import { Footer } from '../footer/Footer';
 import { GlobalStyle } from '../../styles/GlobalStyle';
 import { theme } from '../../styles/theme';
 
@@ -14,6 +15,7 @@ export const Layout = ({ children }: Props) => {
       <GlobalStyle />
       <Header />
       <main>{children}</main>
+      <Footer />
     </ThemeProvider>
   );
 };
