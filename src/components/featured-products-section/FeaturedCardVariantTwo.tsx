@@ -27,6 +27,10 @@ const StyledImageWrapper = styled.div`
   left: 0;
   border-radius: ${({ theme }) => theme.borderRadius};
   overflow: hidden;
+
+  .gatsby-image-wrapper {
+    border-radius: ${({ theme }) => theme.borderRadius};
+  }
 `;
 
 const StyledContentContainer = styled.div`
