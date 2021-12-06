@@ -37,7 +37,7 @@ export const DesktopMenu = ({ className }: Props) => {
       </li>
       {categories.map(({ id, slug, name }) => (
         <li key={id}>
-          <StyledNavLink to={slug.current}>{name}</StyledNavLink>
+          <StyledNavLink to={`/category/${slug.current}`}>{name}</StyledNavLink>
         </li>
       ))}
     </StyledContainer>

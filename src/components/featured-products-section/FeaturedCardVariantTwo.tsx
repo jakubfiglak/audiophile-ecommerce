@@ -58,7 +58,7 @@ export const FeaturedCardVariantTwo = ({
       </StyledImageWrapper>
       <StyledContentContainer>
         <StyledHeading>{title}</StyledHeading>
-        <LinkButton to={`/${slug}`} label="See product" secondary />
+        <LinkButton to={`/product/${slug}`} label="See product" secondary />
       </StyledContentContainer>
     </StyledContainer>
   );

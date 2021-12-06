@@ -168,7 +168,9 @@ export const Footer = () => {
                 </li>
                 {categories.map(({ id, slug, name }) => (
                   <li key={id}>
-                    <StyledNavLink to={slug.current}>{name}</StyledNavLink>
+                    <StyledNavLink to={`/category/${slug.current}`}>
+                      {name}
+                    </StyledNavLink>
                   </li>
                 ))}
               </StyledNavList>

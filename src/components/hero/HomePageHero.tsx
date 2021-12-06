@@ -133,7 +133,10 @@ export const HomePageHero = () => {
               Experience natural, lifelike audio and exceptional build quality
               made for the passionate music enthusiast.
             </StyledParagraph>
-            <LinkButton label="See product" to={`/${product.slug.current}`} />
+            <LinkButton
+              label="See product"
+              to={`/product/${product.slug.current}`}
+            />
           </StyledContentContainer>
         </LayoutContentWrapper>
       </StyledContainer>

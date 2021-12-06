@@ -62,7 +62,7 @@ export const MobileMenu = ({ className }: Props) => {
         <StyledCardWrapper key={id} variants={variants}>
           <CategoryCard
             title={name}
-            linkTo={`/${slug.current}`}
+            linkTo={`/category/${slug.current}`}
             image={{ data: image.asset.gatsbyImageData, alt: image.alt }}
           />
         </StyledCardWrapper>
