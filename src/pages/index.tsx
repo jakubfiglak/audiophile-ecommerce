@@ -12,7 +12,6 @@ const IndexPage = () => {
       <ExtraMenu />
       <FeaturedProductsSection />
       <AboutSection />
-      <p>footer</p>
     </Layout>
   );
 };

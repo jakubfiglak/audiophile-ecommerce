@@ -6095,6 +6095,11 @@ export type FeaturedProductsSectionQueryVariables = Exact<{ [key: string]: never
 
 export type FeaturedProductsSectionQuery = { allSanityProduct: { nodes: Array<{ shortName: string, slug: { current: string }, featuredImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } }> } };
 
+export type FooterDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FooterDataQuery = { sanityGlobalData: { footerCopy: string, logo: { asset: { url: string } } }, allSanityCategory: { nodes: Array<{ id: string, name: string, slug: { current: string } }> } };
+
 export type HomePageHeroQueryVariables = Exact<{ [key: string]: never; }>;
 
 
