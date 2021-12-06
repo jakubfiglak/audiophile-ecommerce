@@ -44,7 +44,7 @@ const styles = ({ secondary, tertiary }: StylesProps) => css`
   :hover {
     background: ${({ theme }) => theme.colors.primaryLight};
     background: ${({ theme }) => secondary && theme.colors.black};
-    background: ${({ theme }) => tertiary && theme.colors.blackTransparent};
+    background: ${({ theme }) => tertiary && theme.colors.gray};
     color: ${({ theme }) => (secondary ? theme.colors.white : '')};
   }
 `;

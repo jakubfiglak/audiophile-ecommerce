@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-import ArrowRight from '../../assets/svg/icon-arrow-right.svg';
+import ArrowRight from '../../assets/svg/icon-arrow-right.inline.svg';
 
 export type Props = {
   label: string;
