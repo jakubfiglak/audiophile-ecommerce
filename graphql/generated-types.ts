@@ -5612,7 +5612,7 @@ export type ProductDataFragment = { name: string, slug: { current: string }, fea
 export type FeaturedProductsSectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FeaturedProductsSectionQuery = { productOne: { name: string, slug: { current: string }, featuredImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } } };
+export type FeaturedProductsSectionQuery = { productOne: { name: string, slug: { current: string }, featuredImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } }, productTwo: { name: string, slug: { current: string }, featuredImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } } };
 
 export type HomePageHeroQueryVariables = Exact<{ [key: string]: never; }>;
 

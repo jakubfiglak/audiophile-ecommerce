@@ -16,8 +16,8 @@ const secondaryBorder = css`
     position: absolute;
     left: 0;
     bottom: 0;
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
+    width: 100%;
+    height: 100%;
     border: ${({ theme }) => `1px solid ${theme.colors.black}`};
   }
 `;
@@ -29,7 +29,7 @@ const styles = ({ secondary, tertiary }: StylesProps) => css`
   letter-spacing: 1px;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   background: ${({ theme }) => theme.colors.primary};
-  background: ${({ theme }) => secondary && theme.colors.white};
+  background: ${() => secondary && 'transparent'};
   background: ${({ theme }) => tertiary && theme.colors.black};
   color: ${({ theme }) =>
     secondary ? theme.colors.black : theme.colors.white};

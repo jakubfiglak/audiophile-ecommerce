@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { IImage } from '../../../graphql/types';
+import { FeaturedCardCommonProps } from './types';
 import { LinkButton } from '../buttons/Button';
 import pattern from '../../assets/svg/pattern-circles.svg';
 import { breakpointFrom } from '../../styles/breakpoints';
@@ -65,12 +65,7 @@ const StyledParagraph = styled.p`
   }
 `;
 
-type Props = {
-  image: IImage;
-  title: string;
-  description: string;
-  slug: string;
-};
+type Props = FeaturedCardCommonProps & { description: string };
 
 export const FeaturedCardVariantOne = ({
   image,
@@ -81,7 +76,6 @@ export const FeaturedCardVariantOne = ({
   return (
     <StyledContainer>
       <div>
-        {/* <SVG src={pattern}/> */}
         <StyledGatsbyImage image={image.data} alt={image.alt} />
       </div>
       <div>
