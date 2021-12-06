@@ -7,6 +7,7 @@ import { useResponsiveImage } from '../../hooks/useResponsiveImage';
 import { LayoutContentWrapper } from '../layout/LayoutContentWrapper';
 import { FeaturedCardVariantTwo } from './FeaturedCardVariantTwo';
 import { breakpointFrom } from '../../styles/breakpoints';
+import { FeaturedCardVariantThree } from './FeaturedCardVariantThree';
 
 const StyledContainer = styled.section`
   margin-top: 12rem;
@@ -36,7 +37,7 @@ export const FeaturedProductsSection = () => {
     }
 
     fragment ProductData on SanityProduct {
-      name
+      shortName
       slug {
         current
       }
@@ -60,6 +61,9 @@ export const FeaturedProductsSection = () => {
       productTwo: sanityProduct(name: { eq: "ZX7 Speaker" }) {
         ...ProductData
       }
+      productThree: sanityProduct(name: { eq: "YX1 Wireless Earphones" }) {
+        ...ProductData
+      }
     }
   `);
 
@@ -75,6 +79,12 @@ export const FeaturedProductsSection = () => {
     )
   );
 
+  const productThreeImageData = useResponsiveImage(
+    mapSanityResponsiveImagesToResponsiveImagesData(
+      data.productThree.featuredImages
+    )
+  );
+
   return (
     <StyledContainer>
       <LayoutContentWrapper>
@@ -82,13 +92,18 @@ export const FeaturedProductsSection = () => {
           <FeaturedCardVariantOne
             image={productOneImageData}
             description="The ZX9 Speaker is a premium speaker that is designed to deliver the best sound quality and sound experience for your home or office."
-            title={data.productOne.name}
+            title={data.productOne.shortName}
             slug={data.productOne.slug.current}
           />
           <FeaturedCardVariantTwo
             image={productTwoImageData}
-            title={data.productTwo.name}
+            title={data.productTwo.shortName}
             slug={data.productTwo.slug.current}
+          />
+          <FeaturedCardVariantThree
+            image={productThreeImageData}
+            title={data.productThree.shortName}
+            slug={data.productThree.slug.current}
           />
         </StyledCardsContainer>
       </LayoutContentWrapper>

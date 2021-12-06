@@ -483,6 +483,7 @@ export type SanityProduct = SanityDocument & Node & {
   _rev: Maybe<Scalars['String']>;
   _key: Maybe<Scalars['String']>;
   name: Maybe<Scalars['String']>;
+  shortName: Maybe<Scalars['String']>;
   slug: Maybe<SanitySlug>;
   image: Maybe<SanityMainImage>;
   heroImages: Maybe<SanityResponsiveImages>;
@@ -1411,6 +1412,7 @@ export type QuerySanityProductArgs = {
   _rev: InputMaybe<StringQueryOperatorInput>;
   _key: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
+  shortName: InputMaybe<StringQueryOperatorInput>;
   slug: InputMaybe<SanitySlugFilterInput>;
   image: InputMaybe<SanityMainImageFilterInput>;
   heroImages: InputMaybe<SanityResponsiveImagesFilterInput>;
@@ -3835,6 +3837,7 @@ export type SanityProductFilterInput = {
   _rev: InputMaybe<StringQueryOperatorInput>;
   _key: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
+  shortName: InputMaybe<StringQueryOperatorInput>;
   slug: InputMaybe<SanitySlugFilterInput>;
   image: InputMaybe<SanityMainImageFilterInput>;
   heroImages: InputMaybe<SanityResponsiveImagesFilterInput>;
@@ -3914,6 +3917,7 @@ export type SanityProductFieldsEnum =
   | '_rev'
   | '_key'
   | 'name'
+  | 'shortName'
   | 'slug____key'
   | 'slug____type'
   | 'slug___current'
@@ -4425,6 +4429,7 @@ export type SanityProductFieldsEnum =
   | 'related____rev'
   | 'related____key'
   | 'related___name'
+  | 'related___shortName'
   | 'related___slug____key'
   | 'related___slug____type'
   | 'related___slug___current'
@@ -4608,6 +4613,7 @@ export type SanityProductFieldsEnum =
   | 'related___related____rev'
   | 'related___related____key'
   | 'related___related___name'
+  | 'related___related___shortName'
   | 'related___related___slug____key'
   | 'related___related___slug____type'
   | 'related___related___slug___current'
@@ -4662,6 +4668,7 @@ export type SanityProductFieldsEnum =
   | 'related___related___related____rev'
   | 'related___related___related____key'
   | 'related___related___related___name'
+  | 'related___related___related___shortName'
   | 'related___related___related___new'
   | 'related___related___related___price'
   | 'related___related___related___description'
@@ -5607,12 +5614,12 @@ export type ImageSharpSortInput = {
 
 export type ImageDataFragment = { alt: string, asset: { gatsbyImageData: any } };
 
-export type ProductDataFragment = { name: string, slug: { current: string }, featuredImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } };
+export type ProductDataFragment = { shortName: string, slug: { current: string }, featuredImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } };
 
 export type FeaturedProductsSectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FeaturedProductsSectionQuery = { productOne: { name: string, slug: { current: string }, featuredImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } }, productTwo: { name: string, slug: { current: string }, featuredImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } } };
+export type FeaturedProductsSectionQuery = { productOne: { shortName: string, slug: { current: string }, featuredImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } }, productTwo: { shortName: string, slug: { current: string }, featuredImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } }, productThree: { shortName: string, slug: { current: string }, featuredImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } } };
 
 export type HomePageHeroQueryVariables = Exact<{ [key: string]: never; }>;
 
