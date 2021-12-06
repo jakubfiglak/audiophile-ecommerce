@@ -5,8 +5,8 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { HomePageHeroQuery } from '../../../graphql/generated-types';
 import { LayoutContentWrapper } from '../layout/LayoutContentWrapper';
 import { LinkButton } from '../buttons/Button';
-import { useHeroImage } from '../../hooks/useHeroImage';
-import { mapSanityHeroImagesToHeroImagesData } from '../../utils/helpers';
+import { useResponsiveImage } from '../../hooks/useResponsiveImage';
+import { mapSanityResponsiveImagesToResponsiveImagesData } from '../../utils/helpers';
 import { breakpointFrom } from '../../styles/breakpoints';
 
 const StyledSection = styled.section`
@@ -30,7 +30,6 @@ const StyledContainer = styled.div`
 
 const StyledContentContainer = styled.div`
   margin-top: ${({ theme }) => `calc(198px - ${theme.navHeight})`};
-  padding: 0 2.4rem;
   text-align: center;
 
   ${breakpointFrom('tablet')} {
@@ -113,8 +112,8 @@ export const HomePageHero = () => {
 
   const product = data.sanityProduct;
 
-  const image = useHeroImage(
-    mapSanityHeroImagesToHeroImagesData(product.heroImages)
+  const image = useResponsiveImage(
+    mapSanityResponsiveImagesToResponsiveImagesData(product.heroImages)
   );
 
   return (
