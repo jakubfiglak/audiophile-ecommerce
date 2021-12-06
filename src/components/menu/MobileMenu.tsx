@@ -36,7 +36,7 @@ const variants = {
 export const MobileMenu = ({ className }: Props) => {
   const data = useStaticQuery<MobileMenuQuery>(graphql`
     query MobileMenu {
-      allSanityCategory {
+      allSanityCategory(sort: { fields: orderRank, order: ASC }) {
         nodes {
           id
           name

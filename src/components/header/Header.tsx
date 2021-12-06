@@ -10,7 +10,7 @@ import { breakpointFrom } from '../../styles/breakpoints';
 import { MenuToggle } from '../menu/MenuToggle';
 
 const StyledHeader = styled.header`
-  z-index: 2;
+  z-index: 10;
   position: fixed;
   width: 100%;
   left: 0;
