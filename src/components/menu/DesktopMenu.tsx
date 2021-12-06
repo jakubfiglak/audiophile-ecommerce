@@ -31,7 +31,7 @@ export type Props = {
 export const DesktopMenu = ({ className }: Props) => {
   const data = useStaticQuery<DesktopMenuQuery>(graphql`
     query DesktopMenu {
-      allSanityCategory {
+      allSanityCategory(sort: { fields: orderRank, order: ASC }) {
         nodes {
           id
           name

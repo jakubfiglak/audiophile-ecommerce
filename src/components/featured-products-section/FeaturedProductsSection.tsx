@@ -36,53 +36,44 @@ export const FeaturedProductsSection = () => {
       }
     }
 
-    fragment ProductData on SanityProduct {
-      shortName
-      slug {
-        current
-      }
-      featuredImages {
-        desktop {
-          ...ImageData
-        }
-        mobile {
-          ...ImageData
-        }
-        tablet {
-          ...ImageData
-        }
-      }
-    }
-
     query FeaturedProductsSection {
-      productOne: sanityProduct(name: { eq: "ZX9 Speaker" }) {
-        ...ProductData
-      }
-      productTwo: sanityProduct(name: { eq: "ZX7 Speaker" }) {
-        ...ProductData
-      }
-      productThree: sanityProduct(name: { eq: "YX1 Wireless Earphones" }) {
-        ...ProductData
+      allSanityProduct(
+        filter: { featured: { eq: true } }
+        sort: { fields: orderRank, order: ASC }
+      ) {
+        nodes {
+          shortName
+          slug {
+            current
+          }
+          featuredImages {
+            desktop {
+              ...ImageData
+            }
+            mobile {
+              ...ImageData
+            }
+            tablet {
+              ...ImageData
+            }
+          }
+        }
       }
     }
   `);
 
+  const products = data.allSanityProduct.nodes;
+
   const productOneImageData = useResponsiveImage(
-    mapSanityResponsiveImagesToResponsiveImagesData(
-      data.productOne.featuredImages
-    )
+    mapSanityResponsiveImagesToResponsiveImagesData(products[0].featuredImages)
   );
 
   const productTwoImageData = useResponsiveImage(
-    mapSanityResponsiveImagesToResponsiveImagesData(
-      data.productTwo.featuredImages
-    )
+    mapSanityResponsiveImagesToResponsiveImagesData(products[1].featuredImages)
   );
 
   const productThreeImageData = useResponsiveImage(
-    mapSanityResponsiveImagesToResponsiveImagesData(
-      data.productThree.featuredImages
-    )
+    mapSanityResponsiveImagesToResponsiveImagesData(products[2].featuredImages)
   );
 
   return (
@@ -92,18 +83,18 @@ export const FeaturedProductsSection = () => {
           <FeaturedCardVariantOne
             image={productOneImageData}
             description="The ZX9 Speaker is a premium speaker that is designed to deliver the best sound quality and sound experience for your home or office."
-            title={data.productOne.shortName}
-            slug={data.productOne.slug.current}
+            title={products[0].shortName}
+            slug={products[0].slug.current}
           />
           <FeaturedCardVariantTwo
             image={productTwoImageData}
-            title={data.productTwo.shortName}
-            slug={data.productTwo.slug.current}
+            title={products[1].shortName}
+            slug={products[1].slug.current}
           />
           <FeaturedCardVariantThree
             image={productThreeImageData}
-            title={data.productThree.shortName}
-            slug={data.productThree.slug.current}
+            title={products[2].shortName}
+            slug={products[2].slug.current}
           />
         </StyledCardsContainer>
       </LayoutContentWrapper>
