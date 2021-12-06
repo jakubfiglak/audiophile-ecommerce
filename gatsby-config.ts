@@ -63,7 +63,6 @@ const config: GatsbyConfig = {
         documentPaths: [
           './src/**/*.{ts,tsx}',
           './node_modules/gatsby-*/**/*.js',
-          './gatsby-node.ts',
         ],
       },
     },

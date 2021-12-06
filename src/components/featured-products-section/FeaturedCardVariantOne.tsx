@@ -81,7 +81,7 @@ export const FeaturedCardVariantOne = ({
       <div>
         <StyledHeading>{title}</StyledHeading>
         <StyledParagraph>{description}</StyledParagraph>
-        <LinkButton to={`/${slug}`} label="See product" tertiary />
+        <LinkButton to={`/product/${slug}`} label="See product" tertiary />
       </div>
     </StyledContainer>
   );
