@@ -382,6 +382,7 @@ export type SanityCategory = SanityDocument & Node & {
   image: Maybe<SanityMainImage>;
   _rawSlug: Maybe<Scalars['JSON']>;
   _rawImage: Maybe<Scalars['JSON']>;
+  gatsbyPath: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent: Maybe<Node>;
   children: Array<Node>;
@@ -412,6 +413,11 @@ export type SanityCategory_RawSlugArgs = {
 
 export type SanityCategory_RawImageArgs = {
   resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
+};
+
+
+export type SanityCategoryGatsbyPathArgs = {
+  filePath: InputMaybe<Scalars['String']>;
 };
 
 /** A Sanity document */
@@ -553,24 +559,30 @@ export type SanityProduct = SanityDocument & Node & {
   slug: Maybe<SanitySlug>;
   image: Maybe<SanityMainImage>;
   heroImages: Maybe<SanityResponsiveImages>;
+  productImages: Maybe<SanityResponsiveImages>;
+  previewImages: Maybe<SanityResponsiveImages>;
   featured: Maybe<Scalars['Boolean']>;
   featuredImages: Maybe<SanityResponsiveImages>;
   category: Maybe<SanityCategory>;
   new: Maybe<Scalars['Boolean']>;
   price: Maybe<Scalars['Float']>;
   description: Maybe<Scalars['String']>;
-  features: Maybe<Scalars['String']>;
   includes: Maybe<Array<Maybe<SanityBoxContent>>>;
-  gallery: Maybe<Array<Maybe<SanityMainImage>>>;
+  gallery: Maybe<Array<Maybe<SanityResponsiveImages>>>;
   related: Maybe<Array<Maybe<SanityProduct>>>;
+  features: Maybe<Array<Maybe<SanityBlock>>>;
   _rawSlug: Maybe<Scalars['JSON']>;
   _rawImage: Maybe<Scalars['JSON']>;
   _rawHeroImages: Maybe<Scalars['JSON']>;
+  _rawProductImages: Maybe<Scalars['JSON']>;
+  _rawPreviewImages: Maybe<Scalars['JSON']>;
   _rawFeaturedImages: Maybe<Scalars['JSON']>;
   _rawCategory: Maybe<Scalars['JSON']>;
+  _rawFeatures: Maybe<Scalars['JSON']>;
   _rawIncludes: Maybe<Scalars['JSON']>;
   _rawGallery: Maybe<Scalars['JSON']>;
   _rawRelated: Maybe<Scalars['JSON']>;
+  gatsbyPath: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent: Maybe<Node>;
   children: Array<Node>;
@@ -609,12 +621,27 @@ export type SanityProduct_RawHeroImagesArgs = {
 };
 
 
+export type SanityProduct_RawProductImagesArgs = {
+  resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
+};
+
+
+export type SanityProduct_RawPreviewImagesArgs = {
+  resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
+};
+
+
 export type SanityProduct_RawFeaturedImagesArgs = {
   resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
 };
 
 
 export type SanityProduct_RawCategoryArgs = {
+  resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
+};
+
+
+export type SanityProduct_RawFeaturesArgs = {
   resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
 };
 
@@ -631,6 +658,11 @@ export type SanityProduct_RawGalleryArgs = {
 
 export type SanityProduct_RawRelatedArgs = {
   resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
+};
+
+
+export type SanityProductGatsbyPathArgs = {
+  filePath: InputMaybe<Scalars['String']>;
 };
 
 export type SanityResponsiveImages = {
@@ -1459,6 +1491,7 @@ export type QuerySanityCategoryArgs = {
   image: InputMaybe<SanityMainImageFilterInput>;
   _rawSlug: InputMaybe<JsonQueryOperatorInput>;
   _rawImage: InputMaybe<JsonQueryOperatorInput>;
+  gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
@@ -1514,24 +1547,30 @@ export type QuerySanityProductArgs = {
   slug: InputMaybe<SanitySlugFilterInput>;
   image: InputMaybe<SanityMainImageFilterInput>;
   heroImages: InputMaybe<SanityResponsiveImagesFilterInput>;
+  productImages: InputMaybe<SanityResponsiveImagesFilterInput>;
+  previewImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   featured: InputMaybe<BooleanQueryOperatorInput>;
   featuredImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   category: InputMaybe<SanityCategoryFilterInput>;
   new: InputMaybe<BooleanQueryOperatorInput>;
   price: InputMaybe<FloatQueryOperatorInput>;
   description: InputMaybe<StringQueryOperatorInput>;
-  features: InputMaybe<StringQueryOperatorInput>;
   includes: InputMaybe<SanityBoxContentFilterListInput>;
-  gallery: InputMaybe<SanityMainImageFilterListInput>;
+  gallery: InputMaybe<SanityResponsiveImagesFilterListInput>;
   related: InputMaybe<SanityProductFilterListInput>;
+  features: InputMaybe<SanityBlockFilterListInput>;
   _rawSlug: InputMaybe<JsonQueryOperatorInput>;
   _rawImage: InputMaybe<JsonQueryOperatorInput>;
   _rawHeroImages: InputMaybe<JsonQueryOperatorInput>;
+  _rawProductImages: InputMaybe<JsonQueryOperatorInput>;
+  _rawPreviewImages: InputMaybe<JsonQueryOperatorInput>;
   _rawFeaturedImages: InputMaybe<JsonQueryOperatorInput>;
   _rawCategory: InputMaybe<JsonQueryOperatorInput>;
+  _rawFeatures: InputMaybe<JsonQueryOperatorInput>;
   _rawIncludes: InputMaybe<JsonQueryOperatorInput>;
   _rawGallery: InputMaybe<JsonQueryOperatorInput>;
   _rawRelated: InputMaybe<JsonQueryOperatorInput>;
+  gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
@@ -3748,6 +3787,7 @@ export type SanityCategoryFieldsEnum =
   | 'image____rawCrop'
   | '_rawSlug'
   | '_rawImage'
+  | 'gatsbyPath'
   | 'id'
   | 'parent___id'
   | 'parent___parent___id'
@@ -3889,6 +3929,7 @@ export type SanityCategoryFilterInput = {
   image: InputMaybe<SanityMainImageFilterInput>;
   _rawSlug: InputMaybe<JsonQueryOperatorInput>;
   _rawImage: InputMaybe<JsonQueryOperatorInput>;
+  gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
@@ -4279,8 +4320,8 @@ export type SanityBoxContentFilterInput = {
   quantity: InputMaybe<FloatQueryOperatorInput>;
 };
 
-export type SanityMainImageFilterListInput = {
-  elemMatch: InputMaybe<SanityMainImageFilterInput>;
+export type SanityResponsiveImagesFilterListInput = {
+  elemMatch: InputMaybe<SanityResponsiveImagesFilterInput>;
 };
 
 export type SanityProductFilterListInput = {
@@ -4300,24 +4341,30 @@ export type SanityProductFilterInput = {
   slug: InputMaybe<SanitySlugFilterInput>;
   image: InputMaybe<SanityMainImageFilterInput>;
   heroImages: InputMaybe<SanityResponsiveImagesFilterInput>;
+  productImages: InputMaybe<SanityResponsiveImagesFilterInput>;
+  previewImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   featured: InputMaybe<BooleanQueryOperatorInput>;
   featuredImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   category: InputMaybe<SanityCategoryFilterInput>;
   new: InputMaybe<BooleanQueryOperatorInput>;
   price: InputMaybe<FloatQueryOperatorInput>;
   description: InputMaybe<StringQueryOperatorInput>;
-  features: InputMaybe<StringQueryOperatorInput>;
   includes: InputMaybe<SanityBoxContentFilterListInput>;
-  gallery: InputMaybe<SanityMainImageFilterListInput>;
+  gallery: InputMaybe<SanityResponsiveImagesFilterListInput>;
   related: InputMaybe<SanityProductFilterListInput>;
+  features: InputMaybe<SanityBlockFilterListInput>;
   _rawSlug: InputMaybe<JsonQueryOperatorInput>;
   _rawImage: InputMaybe<JsonQueryOperatorInput>;
   _rawHeroImages: InputMaybe<JsonQueryOperatorInput>;
+  _rawProductImages: InputMaybe<JsonQueryOperatorInput>;
+  _rawPreviewImages: InputMaybe<JsonQueryOperatorInput>;
   _rawFeaturedImages: InputMaybe<JsonQueryOperatorInput>;
   _rawCategory: InputMaybe<JsonQueryOperatorInput>;
+  _rawFeatures: InputMaybe<JsonQueryOperatorInput>;
   _rawIncludes: InputMaybe<JsonQueryOperatorInput>;
   _rawGallery: InputMaybe<JsonQueryOperatorInput>;
   _rawRelated: InputMaybe<JsonQueryOperatorInput>;
+  gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
@@ -4581,6 +4628,268 @@ export type SanityProductFieldsEnum =
   | 'heroImages____rawMobile'
   | 'heroImages____rawTablet'
   | 'heroImages____rawDesktop'
+  | 'productImages____key'
+  | 'productImages____type'
+  | 'productImages___mobile____key'
+  | 'productImages___mobile____type'
+  | 'productImages___mobile___asset____id'
+  | 'productImages___mobile___asset____type'
+  | 'productImages___mobile___asset____createdAt'
+  | 'productImages___mobile___asset____updatedAt'
+  | 'productImages___mobile___asset____rev'
+  | 'productImages___mobile___asset____key'
+  | 'productImages___mobile___asset___originalFilename'
+  | 'productImages___mobile___asset___label'
+  | 'productImages___mobile___asset___title'
+  | 'productImages___mobile___asset___description'
+  | 'productImages___mobile___asset___altText'
+  | 'productImages___mobile___asset___sha1hash'
+  | 'productImages___mobile___asset___extension'
+  | 'productImages___mobile___asset___mimeType'
+  | 'productImages___mobile___asset___size'
+  | 'productImages___mobile___asset___assetId'
+  | 'productImages___mobile___asset___uploadId'
+  | 'productImages___mobile___asset___path'
+  | 'productImages___mobile___asset___url'
+  | 'productImages___mobile___asset____rawMetadata'
+  | 'productImages___mobile___asset____rawSource'
+  | 'productImages___mobile___asset___gatsbyImageData'
+  | 'productImages___mobile___asset___id'
+  | 'productImages___mobile___asset___children'
+  | 'productImages___mobile___hotspot____key'
+  | 'productImages___mobile___hotspot____type'
+  | 'productImages___mobile___hotspot___x'
+  | 'productImages___mobile___hotspot___y'
+  | 'productImages___mobile___hotspot___height'
+  | 'productImages___mobile___hotspot___width'
+  | 'productImages___mobile___crop____key'
+  | 'productImages___mobile___crop____type'
+  | 'productImages___mobile___crop___top'
+  | 'productImages___mobile___crop___bottom'
+  | 'productImages___mobile___crop___left'
+  | 'productImages___mobile___crop___right'
+  | 'productImages___mobile___alt'
+  | 'productImages___mobile____rawAsset'
+  | 'productImages___mobile____rawHotspot'
+  | 'productImages___mobile____rawCrop'
+  | 'productImages___tablet____key'
+  | 'productImages___tablet____type'
+  | 'productImages___tablet___asset____id'
+  | 'productImages___tablet___asset____type'
+  | 'productImages___tablet___asset____createdAt'
+  | 'productImages___tablet___asset____updatedAt'
+  | 'productImages___tablet___asset____rev'
+  | 'productImages___tablet___asset____key'
+  | 'productImages___tablet___asset___originalFilename'
+  | 'productImages___tablet___asset___label'
+  | 'productImages___tablet___asset___title'
+  | 'productImages___tablet___asset___description'
+  | 'productImages___tablet___asset___altText'
+  | 'productImages___tablet___asset___sha1hash'
+  | 'productImages___tablet___asset___extension'
+  | 'productImages___tablet___asset___mimeType'
+  | 'productImages___tablet___asset___size'
+  | 'productImages___tablet___asset___assetId'
+  | 'productImages___tablet___asset___uploadId'
+  | 'productImages___tablet___asset___path'
+  | 'productImages___tablet___asset___url'
+  | 'productImages___tablet___asset____rawMetadata'
+  | 'productImages___tablet___asset____rawSource'
+  | 'productImages___tablet___asset___gatsbyImageData'
+  | 'productImages___tablet___asset___id'
+  | 'productImages___tablet___asset___children'
+  | 'productImages___tablet___hotspot____key'
+  | 'productImages___tablet___hotspot____type'
+  | 'productImages___tablet___hotspot___x'
+  | 'productImages___tablet___hotspot___y'
+  | 'productImages___tablet___hotspot___height'
+  | 'productImages___tablet___hotspot___width'
+  | 'productImages___tablet___crop____key'
+  | 'productImages___tablet___crop____type'
+  | 'productImages___tablet___crop___top'
+  | 'productImages___tablet___crop___bottom'
+  | 'productImages___tablet___crop___left'
+  | 'productImages___tablet___crop___right'
+  | 'productImages___tablet___alt'
+  | 'productImages___tablet____rawAsset'
+  | 'productImages___tablet____rawHotspot'
+  | 'productImages___tablet____rawCrop'
+  | 'productImages___desktop____key'
+  | 'productImages___desktop____type'
+  | 'productImages___desktop___asset____id'
+  | 'productImages___desktop___asset____type'
+  | 'productImages___desktop___asset____createdAt'
+  | 'productImages___desktop___asset____updatedAt'
+  | 'productImages___desktop___asset____rev'
+  | 'productImages___desktop___asset____key'
+  | 'productImages___desktop___asset___originalFilename'
+  | 'productImages___desktop___asset___label'
+  | 'productImages___desktop___asset___title'
+  | 'productImages___desktop___asset___description'
+  | 'productImages___desktop___asset___altText'
+  | 'productImages___desktop___asset___sha1hash'
+  | 'productImages___desktop___asset___extension'
+  | 'productImages___desktop___asset___mimeType'
+  | 'productImages___desktop___asset___size'
+  | 'productImages___desktop___asset___assetId'
+  | 'productImages___desktop___asset___uploadId'
+  | 'productImages___desktop___asset___path'
+  | 'productImages___desktop___asset___url'
+  | 'productImages___desktop___asset____rawMetadata'
+  | 'productImages___desktop___asset____rawSource'
+  | 'productImages___desktop___asset___gatsbyImageData'
+  | 'productImages___desktop___asset___id'
+  | 'productImages___desktop___asset___children'
+  | 'productImages___desktop___hotspot____key'
+  | 'productImages___desktop___hotspot____type'
+  | 'productImages___desktop___hotspot___x'
+  | 'productImages___desktop___hotspot___y'
+  | 'productImages___desktop___hotspot___height'
+  | 'productImages___desktop___hotspot___width'
+  | 'productImages___desktop___crop____key'
+  | 'productImages___desktop___crop____type'
+  | 'productImages___desktop___crop___top'
+  | 'productImages___desktop___crop___bottom'
+  | 'productImages___desktop___crop___left'
+  | 'productImages___desktop___crop___right'
+  | 'productImages___desktop___alt'
+  | 'productImages___desktop____rawAsset'
+  | 'productImages___desktop____rawHotspot'
+  | 'productImages___desktop____rawCrop'
+  | 'productImages____rawMobile'
+  | 'productImages____rawTablet'
+  | 'productImages____rawDesktop'
+  | 'previewImages____key'
+  | 'previewImages____type'
+  | 'previewImages___mobile____key'
+  | 'previewImages___mobile____type'
+  | 'previewImages___mobile___asset____id'
+  | 'previewImages___mobile___asset____type'
+  | 'previewImages___mobile___asset____createdAt'
+  | 'previewImages___mobile___asset____updatedAt'
+  | 'previewImages___mobile___asset____rev'
+  | 'previewImages___mobile___asset____key'
+  | 'previewImages___mobile___asset___originalFilename'
+  | 'previewImages___mobile___asset___label'
+  | 'previewImages___mobile___asset___title'
+  | 'previewImages___mobile___asset___description'
+  | 'previewImages___mobile___asset___altText'
+  | 'previewImages___mobile___asset___sha1hash'
+  | 'previewImages___mobile___asset___extension'
+  | 'previewImages___mobile___asset___mimeType'
+  | 'previewImages___mobile___asset___size'
+  | 'previewImages___mobile___asset___assetId'
+  | 'previewImages___mobile___asset___uploadId'
+  | 'previewImages___mobile___asset___path'
+  | 'previewImages___mobile___asset___url'
+  | 'previewImages___mobile___asset____rawMetadata'
+  | 'previewImages___mobile___asset____rawSource'
+  | 'previewImages___mobile___asset___gatsbyImageData'
+  | 'previewImages___mobile___asset___id'
+  | 'previewImages___mobile___asset___children'
+  | 'previewImages___mobile___hotspot____key'
+  | 'previewImages___mobile___hotspot____type'
+  | 'previewImages___mobile___hotspot___x'
+  | 'previewImages___mobile___hotspot___y'
+  | 'previewImages___mobile___hotspot___height'
+  | 'previewImages___mobile___hotspot___width'
+  | 'previewImages___mobile___crop____key'
+  | 'previewImages___mobile___crop____type'
+  | 'previewImages___mobile___crop___top'
+  | 'previewImages___mobile___crop___bottom'
+  | 'previewImages___mobile___crop___left'
+  | 'previewImages___mobile___crop___right'
+  | 'previewImages___mobile___alt'
+  | 'previewImages___mobile____rawAsset'
+  | 'previewImages___mobile____rawHotspot'
+  | 'previewImages___mobile____rawCrop'
+  | 'previewImages___tablet____key'
+  | 'previewImages___tablet____type'
+  | 'previewImages___tablet___asset____id'
+  | 'previewImages___tablet___asset____type'
+  | 'previewImages___tablet___asset____createdAt'
+  | 'previewImages___tablet___asset____updatedAt'
+  | 'previewImages___tablet___asset____rev'
+  | 'previewImages___tablet___asset____key'
+  | 'previewImages___tablet___asset___originalFilename'
+  | 'previewImages___tablet___asset___label'
+  | 'previewImages___tablet___asset___title'
+  | 'previewImages___tablet___asset___description'
+  | 'previewImages___tablet___asset___altText'
+  | 'previewImages___tablet___asset___sha1hash'
+  | 'previewImages___tablet___asset___extension'
+  | 'previewImages___tablet___asset___mimeType'
+  | 'previewImages___tablet___asset___size'
+  | 'previewImages___tablet___asset___assetId'
+  | 'previewImages___tablet___asset___uploadId'
+  | 'previewImages___tablet___asset___path'
+  | 'previewImages___tablet___asset___url'
+  | 'previewImages___tablet___asset____rawMetadata'
+  | 'previewImages___tablet___asset____rawSource'
+  | 'previewImages___tablet___asset___gatsbyImageData'
+  | 'previewImages___tablet___asset___id'
+  | 'previewImages___tablet___asset___children'
+  | 'previewImages___tablet___hotspot____key'
+  | 'previewImages___tablet___hotspot____type'
+  | 'previewImages___tablet___hotspot___x'
+  | 'previewImages___tablet___hotspot___y'
+  | 'previewImages___tablet___hotspot___height'
+  | 'previewImages___tablet___hotspot___width'
+  | 'previewImages___tablet___crop____key'
+  | 'previewImages___tablet___crop____type'
+  | 'previewImages___tablet___crop___top'
+  | 'previewImages___tablet___crop___bottom'
+  | 'previewImages___tablet___crop___left'
+  | 'previewImages___tablet___crop___right'
+  | 'previewImages___tablet___alt'
+  | 'previewImages___tablet____rawAsset'
+  | 'previewImages___tablet____rawHotspot'
+  | 'previewImages___tablet____rawCrop'
+  | 'previewImages___desktop____key'
+  | 'previewImages___desktop____type'
+  | 'previewImages___desktop___asset____id'
+  | 'previewImages___desktop___asset____type'
+  | 'previewImages___desktop___asset____createdAt'
+  | 'previewImages___desktop___asset____updatedAt'
+  | 'previewImages___desktop___asset____rev'
+  | 'previewImages___desktop___asset____key'
+  | 'previewImages___desktop___asset___originalFilename'
+  | 'previewImages___desktop___asset___label'
+  | 'previewImages___desktop___asset___title'
+  | 'previewImages___desktop___asset___description'
+  | 'previewImages___desktop___asset___altText'
+  | 'previewImages___desktop___asset___sha1hash'
+  | 'previewImages___desktop___asset___extension'
+  | 'previewImages___desktop___asset___mimeType'
+  | 'previewImages___desktop___asset___size'
+  | 'previewImages___desktop___asset___assetId'
+  | 'previewImages___desktop___asset___uploadId'
+  | 'previewImages___desktop___asset___path'
+  | 'previewImages___desktop___asset___url'
+  | 'previewImages___desktop___asset____rawMetadata'
+  | 'previewImages___desktop___asset____rawSource'
+  | 'previewImages___desktop___asset___gatsbyImageData'
+  | 'previewImages___desktop___asset___id'
+  | 'previewImages___desktop___asset___children'
+  | 'previewImages___desktop___hotspot____key'
+  | 'previewImages___desktop___hotspot____type'
+  | 'previewImages___desktop___hotspot___x'
+  | 'previewImages___desktop___hotspot___y'
+  | 'previewImages___desktop___hotspot___height'
+  | 'previewImages___desktop___hotspot___width'
+  | 'previewImages___desktop___crop____key'
+  | 'previewImages___desktop___crop____type'
+  | 'previewImages___desktop___crop___top'
+  | 'previewImages___desktop___crop___bottom'
+  | 'previewImages___desktop___crop___left'
+  | 'previewImages___desktop___crop___right'
+  | 'previewImages___desktop___alt'
+  | 'previewImages___desktop____rawAsset'
+  | 'previewImages___desktop____rawHotspot'
+  | 'previewImages___desktop____rawCrop'
+  | 'previewImages____rawMobile'
+  | 'previewImages____rawTablet'
+  | 'previewImages____rawDesktop'
   | 'featured'
   | 'featuredImages____key'
   | 'featuredImages____type'
@@ -4768,6 +5077,7 @@ export type SanityProductFieldsEnum =
   | 'category___image____rawCrop'
   | 'category____rawSlug'
   | 'category____rawImage'
+  | 'category___gatsbyPath'
   | 'category___id'
   | 'category___parent___id'
   | 'category___parent___parent___id'
@@ -4809,7 +5119,6 @@ export type SanityProductFieldsEnum =
   | 'new'
   | 'price'
   | 'description'
-  | 'features'
   | 'includes'
   | 'includes____key'
   | 'includes____type'
@@ -4818,72 +5127,135 @@ export type SanityProductFieldsEnum =
   | 'gallery'
   | 'gallery____key'
   | 'gallery____type'
-  | 'gallery___asset____id'
-  | 'gallery___asset____type'
-  | 'gallery___asset____createdAt'
-  | 'gallery___asset____updatedAt'
-  | 'gallery___asset____rev'
-  | 'gallery___asset____key'
-  | 'gallery___asset___originalFilename'
-  | 'gallery___asset___label'
-  | 'gallery___asset___title'
-  | 'gallery___asset___description'
-  | 'gallery___asset___altText'
-  | 'gallery___asset___sha1hash'
-  | 'gallery___asset___extension'
-  | 'gallery___asset___mimeType'
-  | 'gallery___asset___size'
-  | 'gallery___asset___assetId'
-  | 'gallery___asset___uploadId'
-  | 'gallery___asset___path'
-  | 'gallery___asset___url'
-  | 'gallery___asset___metadata____key'
-  | 'gallery___asset___metadata____type'
-  | 'gallery___asset___metadata___lqip'
-  | 'gallery___asset___metadata___blurHash'
-  | 'gallery___asset___metadata___hasAlpha'
-  | 'gallery___asset___metadata___isOpaque'
-  | 'gallery___asset___metadata____rawLocation'
-  | 'gallery___asset___metadata____rawDimensions'
-  | 'gallery___asset___metadata____rawPalette'
-  | 'gallery___asset___source____key'
-  | 'gallery___asset___source____type'
-  | 'gallery___asset___source___name'
-  | 'gallery___asset___source___id'
-  | 'gallery___asset___source___url'
-  | 'gallery___asset____rawMetadata'
-  | 'gallery___asset____rawSource'
-  | 'gallery___asset___gatsbyImageData'
-  | 'gallery___asset___id'
-  | 'gallery___asset___parent___id'
-  | 'gallery___asset___parent___children'
-  | 'gallery___asset___children'
-  | 'gallery___asset___children___id'
-  | 'gallery___asset___children___children'
-  | 'gallery___asset___internal___content'
-  | 'gallery___asset___internal___contentDigest'
-  | 'gallery___asset___internal___description'
-  | 'gallery___asset___internal___fieldOwners'
-  | 'gallery___asset___internal___ignoreType'
-  | 'gallery___asset___internal___mediaType'
-  | 'gallery___asset___internal___owner'
-  | 'gallery___asset___internal___type'
-  | 'gallery___hotspot____key'
-  | 'gallery___hotspot____type'
-  | 'gallery___hotspot___x'
-  | 'gallery___hotspot___y'
-  | 'gallery___hotspot___height'
-  | 'gallery___hotspot___width'
-  | 'gallery___crop____key'
-  | 'gallery___crop____type'
-  | 'gallery___crop___top'
-  | 'gallery___crop___bottom'
-  | 'gallery___crop___left'
-  | 'gallery___crop___right'
-  | 'gallery___alt'
-  | 'gallery____rawAsset'
-  | 'gallery____rawHotspot'
-  | 'gallery____rawCrop'
+  | 'gallery___mobile____key'
+  | 'gallery___mobile____type'
+  | 'gallery___mobile___asset____id'
+  | 'gallery___mobile___asset____type'
+  | 'gallery___mobile___asset____createdAt'
+  | 'gallery___mobile___asset____updatedAt'
+  | 'gallery___mobile___asset____rev'
+  | 'gallery___mobile___asset____key'
+  | 'gallery___mobile___asset___originalFilename'
+  | 'gallery___mobile___asset___label'
+  | 'gallery___mobile___asset___title'
+  | 'gallery___mobile___asset___description'
+  | 'gallery___mobile___asset___altText'
+  | 'gallery___mobile___asset___sha1hash'
+  | 'gallery___mobile___asset___extension'
+  | 'gallery___mobile___asset___mimeType'
+  | 'gallery___mobile___asset___size'
+  | 'gallery___mobile___asset___assetId'
+  | 'gallery___mobile___asset___uploadId'
+  | 'gallery___mobile___asset___path'
+  | 'gallery___mobile___asset___url'
+  | 'gallery___mobile___asset____rawMetadata'
+  | 'gallery___mobile___asset____rawSource'
+  | 'gallery___mobile___asset___gatsbyImageData'
+  | 'gallery___mobile___asset___id'
+  | 'gallery___mobile___asset___children'
+  | 'gallery___mobile___hotspot____key'
+  | 'gallery___mobile___hotspot____type'
+  | 'gallery___mobile___hotspot___x'
+  | 'gallery___mobile___hotspot___y'
+  | 'gallery___mobile___hotspot___height'
+  | 'gallery___mobile___hotspot___width'
+  | 'gallery___mobile___crop____key'
+  | 'gallery___mobile___crop____type'
+  | 'gallery___mobile___crop___top'
+  | 'gallery___mobile___crop___bottom'
+  | 'gallery___mobile___crop___left'
+  | 'gallery___mobile___crop___right'
+  | 'gallery___mobile___alt'
+  | 'gallery___mobile____rawAsset'
+  | 'gallery___mobile____rawHotspot'
+  | 'gallery___mobile____rawCrop'
+  | 'gallery___tablet____key'
+  | 'gallery___tablet____type'
+  | 'gallery___tablet___asset____id'
+  | 'gallery___tablet___asset____type'
+  | 'gallery___tablet___asset____createdAt'
+  | 'gallery___tablet___asset____updatedAt'
+  | 'gallery___tablet___asset____rev'
+  | 'gallery___tablet___asset____key'
+  | 'gallery___tablet___asset___originalFilename'
+  | 'gallery___tablet___asset___label'
+  | 'gallery___tablet___asset___title'
+  | 'gallery___tablet___asset___description'
+  | 'gallery___tablet___asset___altText'
+  | 'gallery___tablet___asset___sha1hash'
+  | 'gallery___tablet___asset___extension'
+  | 'gallery___tablet___asset___mimeType'
+  | 'gallery___tablet___asset___size'
+  | 'gallery___tablet___asset___assetId'
+  | 'gallery___tablet___asset___uploadId'
+  | 'gallery___tablet___asset___path'
+  | 'gallery___tablet___asset___url'
+  | 'gallery___tablet___asset____rawMetadata'
+  | 'gallery___tablet___asset____rawSource'
+  | 'gallery___tablet___asset___gatsbyImageData'
+  | 'gallery___tablet___asset___id'
+  | 'gallery___tablet___asset___children'
+  | 'gallery___tablet___hotspot____key'
+  | 'gallery___tablet___hotspot____type'
+  | 'gallery___tablet___hotspot___x'
+  | 'gallery___tablet___hotspot___y'
+  | 'gallery___tablet___hotspot___height'
+  | 'gallery___tablet___hotspot___width'
+  | 'gallery___tablet___crop____key'
+  | 'gallery___tablet___crop____type'
+  | 'gallery___tablet___crop___top'
+  | 'gallery___tablet___crop___bottom'
+  | 'gallery___tablet___crop___left'
+  | 'gallery___tablet___crop___right'
+  | 'gallery___tablet___alt'
+  | 'gallery___tablet____rawAsset'
+  | 'gallery___tablet____rawHotspot'
+  | 'gallery___tablet____rawCrop'
+  | 'gallery___desktop____key'
+  | 'gallery___desktop____type'
+  | 'gallery___desktop___asset____id'
+  | 'gallery___desktop___asset____type'
+  | 'gallery___desktop___asset____createdAt'
+  | 'gallery___desktop___asset____updatedAt'
+  | 'gallery___desktop___asset____rev'
+  | 'gallery___desktop___asset____key'
+  | 'gallery___desktop___asset___originalFilename'
+  | 'gallery___desktop___asset___label'
+  | 'gallery___desktop___asset___title'
+  | 'gallery___desktop___asset___description'
+  | 'gallery___desktop___asset___altText'
+  | 'gallery___desktop___asset___sha1hash'
+  | 'gallery___desktop___asset___extension'
+  | 'gallery___desktop___asset___mimeType'
+  | 'gallery___desktop___asset___size'
+  | 'gallery___desktop___asset___assetId'
+  | 'gallery___desktop___asset___uploadId'
+  | 'gallery___desktop___asset___path'
+  | 'gallery___desktop___asset___url'
+  | 'gallery___desktop___asset____rawMetadata'
+  | 'gallery___desktop___asset____rawSource'
+  | 'gallery___desktop___asset___gatsbyImageData'
+  | 'gallery___desktop___asset___id'
+  | 'gallery___desktop___asset___children'
+  | 'gallery___desktop___hotspot____key'
+  | 'gallery___desktop___hotspot____type'
+  | 'gallery___desktop___hotspot___x'
+  | 'gallery___desktop___hotspot___y'
+  | 'gallery___desktop___hotspot___height'
+  | 'gallery___desktop___hotspot___width'
+  | 'gallery___desktop___crop____key'
+  | 'gallery___desktop___crop____type'
+  | 'gallery___desktop___crop___top'
+  | 'gallery___desktop___crop___bottom'
+  | 'gallery___desktop___crop___left'
+  | 'gallery___desktop___crop___right'
+  | 'gallery___desktop___alt'
+  | 'gallery___desktop____rawAsset'
+  | 'gallery___desktop____rawHotspot'
+  | 'gallery___desktop____rawCrop'
+  | 'gallery____rawMobile'
+  | 'gallery____rawTablet'
+  | 'gallery____rawDesktop'
   | 'related'
   | 'related____id'
   | 'related____type'
@@ -4962,6 +5334,52 @@ export type SanityProductFieldsEnum =
   | 'related___heroImages____rawMobile'
   | 'related___heroImages____rawTablet'
   | 'related___heroImages____rawDesktop'
+  | 'related___productImages____key'
+  | 'related___productImages____type'
+  | 'related___productImages___mobile____key'
+  | 'related___productImages___mobile____type'
+  | 'related___productImages___mobile___alt'
+  | 'related___productImages___mobile____rawAsset'
+  | 'related___productImages___mobile____rawHotspot'
+  | 'related___productImages___mobile____rawCrop'
+  | 'related___productImages___tablet____key'
+  | 'related___productImages___tablet____type'
+  | 'related___productImages___tablet___alt'
+  | 'related___productImages___tablet____rawAsset'
+  | 'related___productImages___tablet____rawHotspot'
+  | 'related___productImages___tablet____rawCrop'
+  | 'related___productImages___desktop____key'
+  | 'related___productImages___desktop____type'
+  | 'related___productImages___desktop___alt'
+  | 'related___productImages___desktop____rawAsset'
+  | 'related___productImages___desktop____rawHotspot'
+  | 'related___productImages___desktop____rawCrop'
+  | 'related___productImages____rawMobile'
+  | 'related___productImages____rawTablet'
+  | 'related___productImages____rawDesktop'
+  | 'related___previewImages____key'
+  | 'related___previewImages____type'
+  | 'related___previewImages___mobile____key'
+  | 'related___previewImages___mobile____type'
+  | 'related___previewImages___mobile___alt'
+  | 'related___previewImages___mobile____rawAsset'
+  | 'related___previewImages___mobile____rawHotspot'
+  | 'related___previewImages___mobile____rawCrop'
+  | 'related___previewImages___tablet____key'
+  | 'related___previewImages___tablet____type'
+  | 'related___previewImages___tablet___alt'
+  | 'related___previewImages___tablet____rawAsset'
+  | 'related___previewImages___tablet____rawHotspot'
+  | 'related___previewImages___tablet____rawCrop'
+  | 'related___previewImages___desktop____key'
+  | 'related___previewImages___desktop____type'
+  | 'related___previewImages___desktop___alt'
+  | 'related___previewImages___desktop____rawAsset'
+  | 'related___previewImages___desktop____rawHotspot'
+  | 'related___previewImages___desktop____rawCrop'
+  | 'related___previewImages____rawMobile'
+  | 'related___previewImages____rawTablet'
+  | 'related___previewImages____rawDesktop'
   | 'related___featured'
   | 'related___featuredImages____key'
   | 'related___featuredImages____type'
@@ -5005,6 +5423,7 @@ export type SanityProductFieldsEnum =
   | 'related___category___image____rawCrop'
   | 'related___category____rawSlug'
   | 'related___category____rawImage'
+  | 'related___category___gatsbyPath'
   | 'related___category___id'
   | 'related___category___parent___id'
   | 'related___category___parent___children'
@@ -5022,7 +5441,6 @@ export type SanityProductFieldsEnum =
   | 'related___new'
   | 'related___price'
   | 'related___description'
-  | 'related___features'
   | 'related___includes'
   | 'related___includes____key'
   | 'related___includes____type'
@@ -5031,46 +5449,27 @@ export type SanityProductFieldsEnum =
   | 'related___gallery'
   | 'related___gallery____key'
   | 'related___gallery____type'
-  | 'related___gallery___asset____id'
-  | 'related___gallery___asset____type'
-  | 'related___gallery___asset____createdAt'
-  | 'related___gallery___asset____updatedAt'
-  | 'related___gallery___asset____rev'
-  | 'related___gallery___asset____key'
-  | 'related___gallery___asset___originalFilename'
-  | 'related___gallery___asset___label'
-  | 'related___gallery___asset___title'
-  | 'related___gallery___asset___description'
-  | 'related___gallery___asset___altText'
-  | 'related___gallery___asset___sha1hash'
-  | 'related___gallery___asset___extension'
-  | 'related___gallery___asset___mimeType'
-  | 'related___gallery___asset___size'
-  | 'related___gallery___asset___assetId'
-  | 'related___gallery___asset___uploadId'
-  | 'related___gallery___asset___path'
-  | 'related___gallery___asset___url'
-  | 'related___gallery___asset____rawMetadata'
-  | 'related___gallery___asset____rawSource'
-  | 'related___gallery___asset___gatsbyImageData'
-  | 'related___gallery___asset___id'
-  | 'related___gallery___asset___children'
-  | 'related___gallery___hotspot____key'
-  | 'related___gallery___hotspot____type'
-  | 'related___gallery___hotspot___x'
-  | 'related___gallery___hotspot___y'
-  | 'related___gallery___hotspot___height'
-  | 'related___gallery___hotspot___width'
-  | 'related___gallery___crop____key'
-  | 'related___gallery___crop____type'
-  | 'related___gallery___crop___top'
-  | 'related___gallery___crop___bottom'
-  | 'related___gallery___crop___left'
-  | 'related___gallery___crop___right'
-  | 'related___gallery___alt'
-  | 'related___gallery____rawAsset'
-  | 'related___gallery____rawHotspot'
-  | 'related___gallery____rawCrop'
+  | 'related___gallery___mobile____key'
+  | 'related___gallery___mobile____type'
+  | 'related___gallery___mobile___alt'
+  | 'related___gallery___mobile____rawAsset'
+  | 'related___gallery___mobile____rawHotspot'
+  | 'related___gallery___mobile____rawCrop'
+  | 'related___gallery___tablet____key'
+  | 'related___gallery___tablet____type'
+  | 'related___gallery___tablet___alt'
+  | 'related___gallery___tablet____rawAsset'
+  | 'related___gallery___tablet____rawHotspot'
+  | 'related___gallery___tablet____rawCrop'
+  | 'related___gallery___desktop____key'
+  | 'related___gallery___desktop____type'
+  | 'related___gallery___desktop___alt'
+  | 'related___gallery___desktop____rawAsset'
+  | 'related___gallery___desktop____rawHotspot'
+  | 'related___gallery___desktop____rawCrop'
+  | 'related___gallery____rawMobile'
+  | 'related___gallery____rawTablet'
+  | 'related___gallery____rawDesktop'
   | 'related___related'
   | 'related___related____id'
   | 'related___related____type'
@@ -5095,6 +5494,16 @@ export type SanityProductFieldsEnum =
   | 'related___related___heroImages____rawMobile'
   | 'related___related___heroImages____rawTablet'
   | 'related___related___heroImages____rawDesktop'
+  | 'related___related___productImages____key'
+  | 'related___related___productImages____type'
+  | 'related___related___productImages____rawMobile'
+  | 'related___related___productImages____rawTablet'
+  | 'related___related___productImages____rawDesktop'
+  | 'related___related___previewImages____key'
+  | 'related___related___previewImages____type'
+  | 'related___related___previewImages____rawMobile'
+  | 'related___related___previewImages____rawTablet'
+  | 'related___related___previewImages____rawDesktop'
   | 'related___related___featured'
   | 'related___related___featuredImages____key'
   | 'related___related___featuredImages____type'
@@ -5111,12 +5520,12 @@ export type SanityProductFieldsEnum =
   | 'related___related___category___name'
   | 'related___related___category____rawSlug'
   | 'related___related___category____rawImage'
+  | 'related___related___category___gatsbyPath'
   | 'related___related___category___id'
   | 'related___related___category___children'
   | 'related___related___new'
   | 'related___related___price'
   | 'related___related___description'
-  | 'related___related___features'
   | 'related___related___includes'
   | 'related___related___includes____key'
   | 'related___related___includes____type'
@@ -5125,10 +5534,9 @@ export type SanityProductFieldsEnum =
   | 'related___related___gallery'
   | 'related___related___gallery____key'
   | 'related___related___gallery____type'
-  | 'related___related___gallery___alt'
-  | 'related___related___gallery____rawAsset'
-  | 'related___related___gallery____rawHotspot'
-  | 'related___related___gallery____rawCrop'
+  | 'related___related___gallery____rawMobile'
+  | 'related___related___gallery____rawTablet'
+  | 'related___related___gallery____rawDesktop'
   | 'related___related___related'
   | 'related___related___related____id'
   | 'related___related___related____type'
@@ -5143,28 +5551,43 @@ export type SanityProductFieldsEnum =
   | 'related___related___related___new'
   | 'related___related___related___price'
   | 'related___related___related___description'
-  | 'related___related___related___features'
   | 'related___related___related___includes'
   | 'related___related___related___gallery'
   | 'related___related___related___related'
+  | 'related___related___related___features'
   | 'related___related___related____rawSlug'
   | 'related___related___related____rawImage'
   | 'related___related___related____rawHeroImages'
+  | 'related___related___related____rawProductImages'
+  | 'related___related___related____rawPreviewImages'
   | 'related___related___related____rawFeaturedImages'
   | 'related___related___related____rawCategory'
+  | 'related___related___related____rawFeatures'
   | 'related___related___related____rawIncludes'
   | 'related___related___related____rawGallery'
   | 'related___related___related____rawRelated'
+  | 'related___related___related___gatsbyPath'
   | 'related___related___related___id'
   | 'related___related___related___children'
+  | 'related___related___features'
+  | 'related___related___features____key'
+  | 'related___related___features____type'
+  | 'related___related___features___children'
+  | 'related___related___features___style'
+  | 'related___related___features___list'
+  | 'related___related___features____rawChildren'
   | 'related___related____rawSlug'
   | 'related___related____rawImage'
   | 'related___related____rawHeroImages'
+  | 'related___related____rawProductImages'
+  | 'related___related____rawPreviewImages'
   | 'related___related____rawFeaturedImages'
   | 'related___related____rawCategory'
+  | 'related___related____rawFeatures'
   | 'related___related____rawIncludes'
   | 'related___related____rawGallery'
   | 'related___related____rawRelated'
+  | 'related___related___gatsbyPath'
   | 'related___related___id'
   | 'related___related___parent___id'
   | 'related___related___parent___children'
@@ -5179,14 +5602,29 @@ export type SanityProductFieldsEnum =
   | 'related___related___internal___mediaType'
   | 'related___related___internal___owner'
   | 'related___related___internal___type'
+  | 'related___features'
+  | 'related___features____key'
+  | 'related___features____type'
+  | 'related___features___children'
+  | 'related___features___children____key'
+  | 'related___features___children____type'
+  | 'related___features___children___marks'
+  | 'related___features___children___text'
+  | 'related___features___style'
+  | 'related___features___list'
+  | 'related___features____rawChildren'
   | 'related____rawSlug'
   | 'related____rawImage'
   | 'related____rawHeroImages'
+  | 'related____rawProductImages'
+  | 'related____rawPreviewImages'
   | 'related____rawFeaturedImages'
   | 'related____rawCategory'
+  | 'related____rawFeatures'
   | 'related____rawIncludes'
   | 'related____rawGallery'
   | 'related____rawRelated'
+  | 'related___gatsbyPath'
   | 'related___id'
   | 'related___parent___id'
   | 'related___parent___parent___id'
@@ -5225,14 +5663,29 @@ export type SanityProductFieldsEnum =
   | 'related___internal___mediaType'
   | 'related___internal___owner'
   | 'related___internal___type'
+  | 'features'
+  | 'features____key'
+  | 'features____type'
+  | 'features___children'
+  | 'features___children____key'
+  | 'features___children____type'
+  | 'features___children___marks'
+  | 'features___children___text'
+  | 'features___style'
+  | 'features___list'
+  | 'features____rawChildren'
   | '_rawSlug'
   | '_rawImage'
   | '_rawHeroImages'
+  | '_rawProductImages'
+  | '_rawPreviewImages'
   | '_rawFeaturedImages'
   | '_rawCategory'
+  | '_rawFeatures'
   | '_rawIncludes'
   | '_rawGallery'
   | '_rawRelated'
+  | 'gatsbyPath'
   | 'id'
   | 'parent___id'
   | 'parent___parent___id'
@@ -6114,6 +6567,20 @@ export type MobileMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MobileMenuQuery = { allSanityCategory: { nodes: Array<{ id: string, name: string, slug: { current: string }, image: { alt: string, asset: { gatsbyImageData: any } } }> } };
+
+export type CategoryPageQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type CategoryPageQuery = { sanityCategory: { name: string }, allSanityProduct: { nodes: Array<{ id: string, name: string, new: boolean, description: string, previewImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }, slug: { current: string } }> } };
+
+export type ProductPageQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type ProductPageQuery = { sanityProduct: { name: string, new: boolean, description: string, price: number, productImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }, features: Array<{ _rawChildren: any }>, includes: Array<{ name: string, quantity: number }>, gallery: Array<{ mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }>, related: Array<{ id: string, name: string, slug: { current: string } }> } };
 
 export type GatsbyImageSharpFixedFragment = { base64: string, width: number, height: number, src: string, srcSet: string };
 
