@@ -29,13 +29,6 @@ const StyledCardsContainer = styled.div`
 
 export const FeaturedProductsSection = () => {
   const data = useStaticQuery(graphql`
-    fragment ImageData on SanityMainImage {
-      alt
-      asset {
-        gatsbyImageData
-      }
-    }
-
     query FeaturedProductsSection {
       allSanityProduct(
         filter: { featured: { eq: true } }
@@ -47,15 +40,7 @@ export const FeaturedProductsSection = () => {
             current
           }
           featuredImages {
-            desktop {
-              ...ImageData
-            }
-            mobile {
-              ...ImageData
-            }
-            tablet {
-              ...ImageData
-            }
+            ...ResponsiveImagesData
           }
         }
       }

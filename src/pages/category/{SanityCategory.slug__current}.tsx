@@ -29,12 +29,6 @@ const StyledHeading = styled.h1`
 `;
 
 export const query = graphql`
-  fragment ImageData on SanityMainImage {
-    alt
-    asset {
-      gatsbyImageData
-    }
-  }
   query CategoryPage($id: String!) {
     sanityCategory(id: { eq: $id }) {
       name
@@ -50,15 +44,7 @@ export const query = graphql`
         new
         description
         previewImages {
-          mobile {
-            ...ImageData
-          }
-          tablet {
-            ...ImageData
-          }
-          desktop {
-            ...ImageData
-          }
+          ...ResponsiveImagesData
         }
         slug {
           current
