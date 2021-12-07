@@ -5,7 +5,7 @@ export interface IImage {
   alt: string;
 }
 
-export interface IHeroImages {
+export interface IResponsiveImages {
   mobile: IImage;
   tablet: IImage;
   desktop: IImage;

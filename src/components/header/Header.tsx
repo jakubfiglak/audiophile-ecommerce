@@ -9,13 +9,18 @@ import Logo from '../../assets/svg/logo.inline.svg';
 import { breakpointFrom } from '../../styles/breakpoints';
 import { MenuToggle } from '../menu/MenuToggle';
 
-const StyledHeader = styled.header`
+type Props = {
+  backgroundBlack: boolean;
+};
+
+const StyledHeader = styled.header<Props>`
   z-index: 10;
   position: fixed;
   width: 100%;
   left: 0;
   top: 0;
-  background: ${({ theme }) => theme.colors.darkGray};
+  background: ${({ theme, backgroundBlack }) =>
+    backgroundBlack ? theme.colors.black : theme.colors.darkGray};
 `;
 
 const StyledContainer = styled.div`
@@ -103,7 +108,7 @@ const variants = {
   },
 };
 
-export const Header = () => {
+export const Header = ({ backgroundBlack }: Props) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleBurgerClick = useCallback(() => {
@@ -112,7 +117,7 @@ export const Header = () => {
 
   return (
     <>
-      <StyledHeader>
+      <StyledHeader backgroundBlack={backgroundBlack}>
         <LayoutContentWrapper>
           <StyledContainer>
             <MenuToggle

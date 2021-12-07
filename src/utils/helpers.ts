@@ -1,5 +1,7 @@
 import { IGatsbyImageData } from 'gatsby-plugin-image';
-import { IHeroImages, IImage } from '../../graphql/types';
+import { IResponsiveImages, IImage } from '../../graphql/types';
+import { CategoryPageQuery } from '../../graphql/generated-types';
+import { Products } from '../components/product-preview-section/types';
 
 export type SanityImageData = {
   alt: string;
@@ -23,10 +25,27 @@ export function mapSanityMainImageToImageData(image: SanityImageData): IImage {
 
 export function mapSanityResponsiveImagesToResponsiveImagesData(
   data: SanityHeroImagesData
-): IHeroImages {
+): IResponsiveImages {
   return {
     mobile: mapSanityMainImageToImageData(data.mobile),
     tablet: mapSanityMainImageToImageData(data.tablet),
     desktop: mapSanityMainImageToImageData(data.desktop),
   };
+}
+
+type SanityProductPreviewData = CategoryPageQuery['allSanityProduct']['nodes'];
+
+export function mapSanityProductPreviewDataToProducts(
+  data: SanityProductPreviewData
+): Products {
+  return data.map(
+    ({ id, name, new: isNew, description, previewImages, slug }) => ({
+      id,
+      name,
+      isNew,
+      description,
+      linkTo: slug.current,
+      images: mapSanityResponsiveImagesToResponsiveImagesData(previewImages),
+    })
+  );
 }
