@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useBreakpoints } from './useBreakpoints';
-import { IHeroImages, IImage } from '../../graphql/types';
+import { IResponsiveImages, IImage } from '../../graphql/types';
 
-export function useResponsiveImage(images: IHeroImages) {
+export function useResponsiveImage(images: IResponsiveImages) {
   const [image, setImage] = useState<IImage>({
     data: images.desktop.data,
     alt: images.desktop.alt,

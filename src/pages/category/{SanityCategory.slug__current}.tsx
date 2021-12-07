@@ -7,6 +7,8 @@ import { CategoryPageQuery } from '../../../graphql/generated-types';
 import { ExtraMenu } from '../../components/menu/ExtraMenu';
 import { AboutSection } from '../../components/about-section/AboutSection';
 import { breakpointFrom } from '../../styles/breakpoints';
+import { ProductPreviewSection } from '../../components/product-preview-section/ProductPreviewSection';
+import { mapSanityProductPreviewDataToProducts } from '../../utils/helpers';
 
 const StyledHeading = styled.h1`
   margin-top: ${({ theme }) => theme.navHeight};
@@ -69,11 +71,17 @@ export const query = graphql`
 type Props = PageProps<CategoryPageQuery>;
 
 const CategoryPage = ({ data }: Props) => {
+  const category = data.sanityCategory;
+  const products = data.allSanityProduct.nodes;
+
   return (
     <>
       <StyledHeading>
-        <LayoutContentWrapper>{data.sanityCategory.name}</LayoutContentWrapper>
+        <LayoutContentWrapper>{category.name}</LayoutContentWrapper>
       </StyledHeading>
+      <ProductPreviewSection
+        products={mapSanityProductPreviewDataToProducts(products)}
+      />
       <ExtraMenu />
       <AboutSection />
     </>
