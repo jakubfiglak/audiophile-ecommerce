@@ -12,15 +12,7 @@ export const query = graphql`
       name
       new
       productImages {
-        mobile {
-          ...ImageData
-        }
-        tablet {
-          ...ImageData
-        }
-        desktop {
-          ...ImageData
-        }
+        ...ResponsiveImagesData
       }
       description
       price
@@ -32,15 +24,7 @@ export const query = graphql`
         quantity
       }
       gallery {
-        mobile {
-          ...ImageData
-        }
-        tablet {
-          ...ImageData
-        }
-        desktop {
-          ...ImageData
-        }
+        ...ResponsiveImagesData
       }
       related {
         id

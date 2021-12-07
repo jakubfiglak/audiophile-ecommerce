@@ -8,3 +8,17 @@ export const imageData = graphql`
     }
   }
 `;
+
+export const responsiveImagesData = graphql`
+  fragment ResponsiveImagesData on SanityResponsiveImages {
+    mobile {
+      ...ImageData
+    }
+    tablet {
+      ...ImageData
+    }
+    desktop {
+      ...ImageData
+    }
+  }
+`;

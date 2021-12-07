@@ -40,15 +40,7 @@ export const FeaturedProductsSection = () => {
             current
           }
           featuredImages {
-            desktop {
-              ...ImageData
-            }
-            mobile {
-              ...ImageData
-            }
-            tablet {
-              ...ImageData
-            }
+            ...ResponsiveImagesData
           }
         }
       }

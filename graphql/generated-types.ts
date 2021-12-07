@@ -6539,12 +6539,12 @@ export type ImageSharpSortInput = {
 export type AboutSectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AboutSectionQuery = { sanityGlobalData: { aboutSection: { _rawTitle: any, text: string, images: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } } } };
+export type AboutSectionQuery = { sanityGlobalData: { aboutSection: { _rawTitle: any, text: string, images: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } } } } };
 
 export type FeaturedProductsSectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FeaturedProductsSectionQuery = { allSanityProduct: { nodes: Array<{ shortName: string, slug: { current: string }, featuredImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } }> } };
+export type FeaturedProductsSectionQuery = { allSanityProduct: { nodes: Array<{ shortName: string, slug: { current: string }, featuredImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } } }> } };
 
 export type FooterDataQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6554,7 +6554,7 @@ export type FooterDataQuery = { sanityGlobalData: { footerCopy: string, logo: { 
 export type HomePageHeroQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageHeroQuery = { sanityProduct: { name: string, new: boolean, slug: { current: string }, heroImages: { desktop: { alt: string, asset: { gatsbyImageData: any } }, mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } } } } };
+export type HomePageHeroQuery = { sanityProduct: { name: string, new: boolean, slug: { current: string }, heroImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } } } };
 
 export type DesktopMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6581,6 +6581,8 @@ export type ProductPageQueryVariables = Exact<{
 export type ProductPageQuery = { sanityProduct: { name: string, new: boolean, description: string, price: number, productImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }, features: Array<{ _rawChildren: any }>, includes: Array<{ name: string, quantity: number }>, gallery: Array<{ mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }>, related: Array<{ id: string, name: string, slug: { current: string } }> } };
 
 export type ImageDataFragment = { alt: string, asset: { gatsbyImageData: any } };
+
+export type ResponsiveImagesDataFragment = { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } };
 
 export type GatsbyImageSharpFixedFragment = { base64: string, width: number, height: number, src: string, srcSet: string };
 

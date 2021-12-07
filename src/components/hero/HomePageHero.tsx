@@ -89,15 +89,7 @@ export const HomePageHero = () => {
           current
         }
         heroImages {
-          desktop {
-            ...ImageData
-          }
-          mobile {
-            ...ImageData
-          }
-          tablet {
-            ...ImageData
-          }
+          ...ResponsiveImagesData
         }
       }
     }

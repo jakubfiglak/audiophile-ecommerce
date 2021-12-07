@@ -89,15 +89,7 @@ export const AboutSection = () => {
           _rawTitle
           text
           images {
-            desktop {
-              ...ImageData
-            }
-            mobile {
-              ...ImageData
-            }
-            tablet {
-              ...ImageData
-            }
+            ...ResponsiveImagesData
           }
         }
       }

@@ -44,15 +44,7 @@ export const query = graphql`
         new
         description
         previewImages {
-          mobile {
-            ...ImageData
-          }
-          tablet {
-            ...ImageData
-          }
-          desktop {
-            ...ImageData
-          }
+          ...ResponsiveImagesData
         }
         slug {
           current
