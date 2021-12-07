@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import type { PageProps } from 'gatsby';
 import { ThemeProvider } from 'styled-components';
 import { Header } from '../header/Header';
 import { Footer } from '../footer/Footer';
@@ -7,13 +8,13 @@ import { theme } from '../../styles/theme';
 
 type Props = {
   children: ReactNode;
-};
+} & PageProps;
 
-export const Layout = ({ children }: Props) => {
+export const Layout = ({ children, location }: Props) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Header />
+      <Header backgroundBlack={location.pathname !== '/'} />
       <main>{children}</main>
       <Footer />
     </ThemeProvider>
