@@ -81,13 +81,6 @@ const StyledParagraph = styled.p`
 
 export const HomePageHero = () => {
   const data = useStaticQuery<HomePageHeroQuery>(graphql`
-    fragment ImageData on SanityMainImage {
-      alt
-      asset {
-        gatsbyImageData
-      }
-    }
-
     query HomePageHero {
       sanityProduct(name: { eq: "XX99 Mark II Headphones" }) {
         name

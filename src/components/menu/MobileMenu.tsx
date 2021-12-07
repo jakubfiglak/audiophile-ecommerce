@@ -44,10 +44,7 @@ export const MobileMenu = ({ className }: Props) => {
             current
           }
           image {
-            alt
-            asset {
-              gatsbyImageData(placeholder: BLURRED)
-            }
+            ...ImageData
           }
         }
       }

@@ -6536,8 +6536,6 @@ export type ImageSharpSortInput = {
   order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
-export type ImageDataFragment = { alt: string, asset: { gatsbyImageData: any } };
-
 export type AboutSectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6581,6 +6579,8 @@ export type ProductPageQueryVariables = Exact<{
 
 
 export type ProductPageQuery = { sanityProduct: { name: string, new: boolean, description: string, price: number, productImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }, features: Array<{ _rawChildren: any }>, includes: Array<{ name: string, quantity: number }>, gallery: Array<{ mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }>, related: Array<{ id: string, name: string, slug: { current: string } }> } };
+
+export type ImageDataFragment = { alt: string, asset: { gatsbyImageData: any } };
 
 export type GatsbyImageSharpFixedFragment = { base64: string, width: number, height: number, src: string, srcSet: string };
 

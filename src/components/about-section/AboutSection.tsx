@@ -83,13 +83,6 @@ const StyledParagraph = styled.p`
 
 export const AboutSection = () => {
   const data = useStaticQuery<AboutSectionQuery>(graphql`
-    fragment ImageData on SanityMainImage {
-      alt
-      asset {
-        gatsbyImageData
-      }
-    }
-
     query AboutSection {
       sanityGlobalData {
         aboutSection {

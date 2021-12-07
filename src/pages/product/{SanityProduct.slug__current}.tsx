@@ -7,13 +7,6 @@ import { AboutSection } from '../../components/about-section/AboutSection';
 import { ProductPageQuery } from '../../../graphql/generated-types';
 
 export const query = graphql`
-  fragment ImageData on SanityMainImage {
-    alt
-    asset {
-      gatsbyImageData
-    }
-  }
-
   query ProductPage($id: String!) {
     sanityProduct(id: { eq: $id }) {
       name
