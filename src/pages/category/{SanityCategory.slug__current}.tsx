@@ -1,10 +1,30 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import type { PageProps } from 'gatsby';
+import styled from 'styled-components';
 import { LayoutContentWrapper } from '../../components/layout/LayoutContentWrapper';
 import { CategoryPageQuery } from '../../../graphql/generated-types';
 import { ExtraMenu } from '../../components/menu/ExtraMenu';
 import { AboutSection } from '../../components/about-section/AboutSection';
+import { breakpointFrom } from '../../styles/breakpoints';
+
+const StyledHeading = styled.h1`
+  margin-top: ${({ theme }) => theme.navHeight};
+  padding: 3.2rem 0;
+  background: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 2.8rem;
+  line-height: 3.8rem;
+  letter-spacing: 2px;
+  text-align: center;
+
+  ${breakpointFrom('tablet')} {
+    padding: 9.7rem 0;
+    font-size: 4rem;
+    line-height: 4.4rem;
+    letter-spacing: 1.4px;
+  }
+`;
 
 export const query = graphql`
   fragment ImageData on SanityMainImage {
@@ -50,11 +70,13 @@ type Props = PageProps<CategoryPageQuery>;
 
 const CategoryPage = ({ data }: Props) => {
   return (
-    <LayoutContentWrapper>
-      <pre style={{ marginTop: 200 }}>{JSON.stringify(data, null, 2)}</pre>
+    <>
+      <StyledHeading>
+        <LayoutContentWrapper>{data.sanityCategory.name}</LayoutContentWrapper>
+      </StyledHeading>
       <ExtraMenu />
       <AboutSection />
-    </LayoutContentWrapper>
+    </>
   );
 };
 
