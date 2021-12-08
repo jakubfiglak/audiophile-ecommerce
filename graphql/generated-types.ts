@@ -6578,7 +6578,7 @@ export type ProductPageQueryVariables = Exact<{
 }>;
 
 
-export type ProductPageQuery = { sanityProduct: { name: string, new: boolean, description: string, price: number, productImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }, features: Array<{ _rawChildren: any }>, includes: Array<{ name: string, quantity: number }>, gallery: Array<{ mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }>, related: Array<{ id: string, name: string, slug: { current: string } }> } };
+export type ProductPageQuery = { sanityProduct: { name: string, new: boolean, description: string, price: number, _rawFeatures: any, productImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }, includes: Array<{ name: string, quantity: number }>, gallery: Array<{ mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }>, related: Array<{ id: string, name: string, slug: { current: string } }> } };
 
 export type ImageDataFragment = { alt: string, asset: { gatsbyImageData: any } };
 
