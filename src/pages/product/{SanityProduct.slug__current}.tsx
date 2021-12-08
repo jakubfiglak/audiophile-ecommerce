@@ -7,9 +7,13 @@ import { ExtraMenu } from '../../components/menu/ExtraMenu';
 import { AboutSection } from '../../components/about-section/AboutSection';
 import { ProductPageQuery } from '../../../graphql/generated-types';
 import { ProductDetailsSection } from '../../components/product-details-section/ProductDetailsSection';
-import { mapSanityResponsiveImagesToResponsiveImagesData } from '../../utils/helpers';
+import {
+  mapSanityRelatedProductsDataToRelatedProducts,
+  mapSanityResponsiveImagesToResponsiveImagesData,
+} from '../../utils/helpers';
 import { ProductAdditionalInfoSection } from '../../components/product-additional-info-section/ProductAdditionalInfoSection';
 import { ProductGallerySection } from '../../components/product-gallery-section/ProductGallerySection';
+import { RelatedProductsSection } from '../../components/related-products-section/RelatedProductsSection';
 
 const StyledGoBackButton = styled.button`
   margin-top: ${({ theme }) => `calc(${theme.navHeight} + 2rem)`};
@@ -40,6 +44,7 @@ const ProductPage = ({ data }: Props) => {
     includes,
     _rawFeatures,
     gallery,
+    related,
   } = product;
 
   return (
@@ -76,6 +81,9 @@ const ProductPage = ({ data }: Props) => {
           gallery[2]
         )}
       />
+      <RelatedProductsSection
+        products={mapSanityRelatedProductsDataToRelatedProducts(related)}
+      />
       <ExtraMenu />
       <AboutSection />
     </>
@@ -102,9 +110,12 @@ export const query = graphql`
       }
       related {
         id
-        name
+        shortName
         slug {
           current
+        }
+        thumbnailImages {
+          ...ResponsiveImagesData
         }
       }
     }

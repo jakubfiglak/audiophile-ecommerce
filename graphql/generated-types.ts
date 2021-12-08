@@ -561,6 +561,7 @@ export type SanityProduct = SanityDocument & Node & {
   heroImages: Maybe<SanityResponsiveImages>;
   productImages: Maybe<SanityResponsiveImages>;
   previewImages: Maybe<SanityResponsiveImages>;
+  thumbnailImages: Maybe<SanityResponsiveImages>;
   featured: Maybe<Scalars['Boolean']>;
   featuredImages: Maybe<SanityResponsiveImages>;
   category: Maybe<SanityCategory>;
@@ -576,6 +577,7 @@ export type SanityProduct = SanityDocument & Node & {
   _rawHeroImages: Maybe<Scalars['JSON']>;
   _rawProductImages: Maybe<Scalars['JSON']>;
   _rawPreviewImages: Maybe<Scalars['JSON']>;
+  _rawThumbnailImages: Maybe<Scalars['JSON']>;
   _rawFeaturedImages: Maybe<Scalars['JSON']>;
   _rawCategory: Maybe<Scalars['JSON']>;
   _rawFeatures: Maybe<Scalars['JSON']>;
@@ -627,6 +629,11 @@ export type SanityProduct_RawProductImagesArgs = {
 
 
 export type SanityProduct_RawPreviewImagesArgs = {
+  resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
+};
+
+
+export type SanityProduct_RawThumbnailImagesArgs = {
   resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
 };
 
@@ -1549,6 +1556,7 @@ export type QuerySanityProductArgs = {
   heroImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   productImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   previewImages: InputMaybe<SanityResponsiveImagesFilterInput>;
+  thumbnailImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   featured: InputMaybe<BooleanQueryOperatorInput>;
   featuredImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   category: InputMaybe<SanityCategoryFilterInput>;
@@ -1564,6 +1572,7 @@ export type QuerySanityProductArgs = {
   _rawHeroImages: InputMaybe<JsonQueryOperatorInput>;
   _rawProductImages: InputMaybe<JsonQueryOperatorInput>;
   _rawPreviewImages: InputMaybe<JsonQueryOperatorInput>;
+  _rawThumbnailImages: InputMaybe<JsonQueryOperatorInput>;
   _rawFeaturedImages: InputMaybe<JsonQueryOperatorInput>;
   _rawCategory: InputMaybe<JsonQueryOperatorInput>;
   _rawFeatures: InputMaybe<JsonQueryOperatorInput>;
@@ -4343,6 +4352,7 @@ export type SanityProductFilterInput = {
   heroImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   productImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   previewImages: InputMaybe<SanityResponsiveImagesFilterInput>;
+  thumbnailImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   featured: InputMaybe<BooleanQueryOperatorInput>;
   featuredImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   category: InputMaybe<SanityCategoryFilterInput>;
@@ -4358,6 +4368,7 @@ export type SanityProductFilterInput = {
   _rawHeroImages: InputMaybe<JsonQueryOperatorInput>;
   _rawProductImages: InputMaybe<JsonQueryOperatorInput>;
   _rawPreviewImages: InputMaybe<JsonQueryOperatorInput>;
+  _rawThumbnailImages: InputMaybe<JsonQueryOperatorInput>;
   _rawFeaturedImages: InputMaybe<JsonQueryOperatorInput>;
   _rawCategory: InputMaybe<JsonQueryOperatorInput>;
   _rawFeatures: InputMaybe<JsonQueryOperatorInput>;
@@ -4890,6 +4901,137 @@ export type SanityProductFieldsEnum =
   | 'previewImages____rawMobile'
   | 'previewImages____rawTablet'
   | 'previewImages____rawDesktop'
+  | 'thumbnailImages____key'
+  | 'thumbnailImages____type'
+  | 'thumbnailImages___mobile____key'
+  | 'thumbnailImages___mobile____type'
+  | 'thumbnailImages___mobile___asset____id'
+  | 'thumbnailImages___mobile___asset____type'
+  | 'thumbnailImages___mobile___asset____createdAt'
+  | 'thumbnailImages___mobile___asset____updatedAt'
+  | 'thumbnailImages___mobile___asset____rev'
+  | 'thumbnailImages___mobile___asset____key'
+  | 'thumbnailImages___mobile___asset___originalFilename'
+  | 'thumbnailImages___mobile___asset___label'
+  | 'thumbnailImages___mobile___asset___title'
+  | 'thumbnailImages___mobile___asset___description'
+  | 'thumbnailImages___mobile___asset___altText'
+  | 'thumbnailImages___mobile___asset___sha1hash'
+  | 'thumbnailImages___mobile___asset___extension'
+  | 'thumbnailImages___mobile___asset___mimeType'
+  | 'thumbnailImages___mobile___asset___size'
+  | 'thumbnailImages___mobile___asset___assetId'
+  | 'thumbnailImages___mobile___asset___uploadId'
+  | 'thumbnailImages___mobile___asset___path'
+  | 'thumbnailImages___mobile___asset___url'
+  | 'thumbnailImages___mobile___asset____rawMetadata'
+  | 'thumbnailImages___mobile___asset____rawSource'
+  | 'thumbnailImages___mobile___asset___gatsbyImageData'
+  | 'thumbnailImages___mobile___asset___id'
+  | 'thumbnailImages___mobile___asset___children'
+  | 'thumbnailImages___mobile___hotspot____key'
+  | 'thumbnailImages___mobile___hotspot____type'
+  | 'thumbnailImages___mobile___hotspot___x'
+  | 'thumbnailImages___mobile___hotspot___y'
+  | 'thumbnailImages___mobile___hotspot___height'
+  | 'thumbnailImages___mobile___hotspot___width'
+  | 'thumbnailImages___mobile___crop____key'
+  | 'thumbnailImages___mobile___crop____type'
+  | 'thumbnailImages___mobile___crop___top'
+  | 'thumbnailImages___mobile___crop___bottom'
+  | 'thumbnailImages___mobile___crop___left'
+  | 'thumbnailImages___mobile___crop___right'
+  | 'thumbnailImages___mobile___alt'
+  | 'thumbnailImages___mobile____rawAsset'
+  | 'thumbnailImages___mobile____rawHotspot'
+  | 'thumbnailImages___mobile____rawCrop'
+  | 'thumbnailImages___tablet____key'
+  | 'thumbnailImages___tablet____type'
+  | 'thumbnailImages___tablet___asset____id'
+  | 'thumbnailImages___tablet___asset____type'
+  | 'thumbnailImages___tablet___asset____createdAt'
+  | 'thumbnailImages___tablet___asset____updatedAt'
+  | 'thumbnailImages___tablet___asset____rev'
+  | 'thumbnailImages___tablet___asset____key'
+  | 'thumbnailImages___tablet___asset___originalFilename'
+  | 'thumbnailImages___tablet___asset___label'
+  | 'thumbnailImages___tablet___asset___title'
+  | 'thumbnailImages___tablet___asset___description'
+  | 'thumbnailImages___tablet___asset___altText'
+  | 'thumbnailImages___tablet___asset___sha1hash'
+  | 'thumbnailImages___tablet___asset___extension'
+  | 'thumbnailImages___tablet___asset___mimeType'
+  | 'thumbnailImages___tablet___asset___size'
+  | 'thumbnailImages___tablet___asset___assetId'
+  | 'thumbnailImages___tablet___asset___uploadId'
+  | 'thumbnailImages___tablet___asset___path'
+  | 'thumbnailImages___tablet___asset___url'
+  | 'thumbnailImages___tablet___asset____rawMetadata'
+  | 'thumbnailImages___tablet___asset____rawSource'
+  | 'thumbnailImages___tablet___asset___gatsbyImageData'
+  | 'thumbnailImages___tablet___asset___id'
+  | 'thumbnailImages___tablet___asset___children'
+  | 'thumbnailImages___tablet___hotspot____key'
+  | 'thumbnailImages___tablet___hotspot____type'
+  | 'thumbnailImages___tablet___hotspot___x'
+  | 'thumbnailImages___tablet___hotspot___y'
+  | 'thumbnailImages___tablet___hotspot___height'
+  | 'thumbnailImages___tablet___hotspot___width'
+  | 'thumbnailImages___tablet___crop____key'
+  | 'thumbnailImages___tablet___crop____type'
+  | 'thumbnailImages___tablet___crop___top'
+  | 'thumbnailImages___tablet___crop___bottom'
+  | 'thumbnailImages___tablet___crop___left'
+  | 'thumbnailImages___tablet___crop___right'
+  | 'thumbnailImages___tablet___alt'
+  | 'thumbnailImages___tablet____rawAsset'
+  | 'thumbnailImages___tablet____rawHotspot'
+  | 'thumbnailImages___tablet____rawCrop'
+  | 'thumbnailImages___desktop____key'
+  | 'thumbnailImages___desktop____type'
+  | 'thumbnailImages___desktop___asset____id'
+  | 'thumbnailImages___desktop___asset____type'
+  | 'thumbnailImages___desktop___asset____createdAt'
+  | 'thumbnailImages___desktop___asset____updatedAt'
+  | 'thumbnailImages___desktop___asset____rev'
+  | 'thumbnailImages___desktop___asset____key'
+  | 'thumbnailImages___desktop___asset___originalFilename'
+  | 'thumbnailImages___desktop___asset___label'
+  | 'thumbnailImages___desktop___asset___title'
+  | 'thumbnailImages___desktop___asset___description'
+  | 'thumbnailImages___desktop___asset___altText'
+  | 'thumbnailImages___desktop___asset___sha1hash'
+  | 'thumbnailImages___desktop___asset___extension'
+  | 'thumbnailImages___desktop___asset___mimeType'
+  | 'thumbnailImages___desktop___asset___size'
+  | 'thumbnailImages___desktop___asset___assetId'
+  | 'thumbnailImages___desktop___asset___uploadId'
+  | 'thumbnailImages___desktop___asset___path'
+  | 'thumbnailImages___desktop___asset___url'
+  | 'thumbnailImages___desktop___asset____rawMetadata'
+  | 'thumbnailImages___desktop___asset____rawSource'
+  | 'thumbnailImages___desktop___asset___gatsbyImageData'
+  | 'thumbnailImages___desktop___asset___id'
+  | 'thumbnailImages___desktop___asset___children'
+  | 'thumbnailImages___desktop___hotspot____key'
+  | 'thumbnailImages___desktop___hotspot____type'
+  | 'thumbnailImages___desktop___hotspot___x'
+  | 'thumbnailImages___desktop___hotspot___y'
+  | 'thumbnailImages___desktop___hotspot___height'
+  | 'thumbnailImages___desktop___hotspot___width'
+  | 'thumbnailImages___desktop___crop____key'
+  | 'thumbnailImages___desktop___crop____type'
+  | 'thumbnailImages___desktop___crop___top'
+  | 'thumbnailImages___desktop___crop___bottom'
+  | 'thumbnailImages___desktop___crop___left'
+  | 'thumbnailImages___desktop___crop___right'
+  | 'thumbnailImages___desktop___alt'
+  | 'thumbnailImages___desktop____rawAsset'
+  | 'thumbnailImages___desktop____rawHotspot'
+  | 'thumbnailImages___desktop____rawCrop'
+  | 'thumbnailImages____rawMobile'
+  | 'thumbnailImages____rawTablet'
+  | 'thumbnailImages____rawDesktop'
   | 'featured'
   | 'featuredImages____key'
   | 'featuredImages____type'
@@ -5380,6 +5522,29 @@ export type SanityProductFieldsEnum =
   | 'related___previewImages____rawMobile'
   | 'related___previewImages____rawTablet'
   | 'related___previewImages____rawDesktop'
+  | 'related___thumbnailImages____key'
+  | 'related___thumbnailImages____type'
+  | 'related___thumbnailImages___mobile____key'
+  | 'related___thumbnailImages___mobile____type'
+  | 'related___thumbnailImages___mobile___alt'
+  | 'related___thumbnailImages___mobile____rawAsset'
+  | 'related___thumbnailImages___mobile____rawHotspot'
+  | 'related___thumbnailImages___mobile____rawCrop'
+  | 'related___thumbnailImages___tablet____key'
+  | 'related___thumbnailImages___tablet____type'
+  | 'related___thumbnailImages___tablet___alt'
+  | 'related___thumbnailImages___tablet____rawAsset'
+  | 'related___thumbnailImages___tablet____rawHotspot'
+  | 'related___thumbnailImages___tablet____rawCrop'
+  | 'related___thumbnailImages___desktop____key'
+  | 'related___thumbnailImages___desktop____type'
+  | 'related___thumbnailImages___desktop___alt'
+  | 'related___thumbnailImages___desktop____rawAsset'
+  | 'related___thumbnailImages___desktop____rawHotspot'
+  | 'related___thumbnailImages___desktop____rawCrop'
+  | 'related___thumbnailImages____rawMobile'
+  | 'related___thumbnailImages____rawTablet'
+  | 'related___thumbnailImages____rawDesktop'
   | 'related___featured'
   | 'related___featuredImages____key'
   | 'related___featuredImages____type'
@@ -5504,6 +5669,11 @@ export type SanityProductFieldsEnum =
   | 'related___related___previewImages____rawMobile'
   | 'related___related___previewImages____rawTablet'
   | 'related___related___previewImages____rawDesktop'
+  | 'related___related___thumbnailImages____key'
+  | 'related___related___thumbnailImages____type'
+  | 'related___related___thumbnailImages____rawMobile'
+  | 'related___related___thumbnailImages____rawTablet'
+  | 'related___related___thumbnailImages____rawDesktop'
   | 'related___related___featured'
   | 'related___related___featuredImages____key'
   | 'related___related___featuredImages____type'
@@ -5560,6 +5730,7 @@ export type SanityProductFieldsEnum =
   | 'related___related___related____rawHeroImages'
   | 'related___related___related____rawProductImages'
   | 'related___related___related____rawPreviewImages'
+  | 'related___related___related____rawThumbnailImages'
   | 'related___related___related____rawFeaturedImages'
   | 'related___related___related____rawCategory'
   | 'related___related___related____rawFeatures'
@@ -5581,6 +5752,7 @@ export type SanityProductFieldsEnum =
   | 'related___related____rawHeroImages'
   | 'related___related____rawProductImages'
   | 'related___related____rawPreviewImages'
+  | 'related___related____rawThumbnailImages'
   | 'related___related____rawFeaturedImages'
   | 'related___related____rawCategory'
   | 'related___related____rawFeatures'
@@ -5618,6 +5790,7 @@ export type SanityProductFieldsEnum =
   | 'related____rawHeroImages'
   | 'related____rawProductImages'
   | 'related____rawPreviewImages'
+  | 'related____rawThumbnailImages'
   | 'related____rawFeaturedImages'
   | 'related____rawCategory'
   | 'related____rawFeatures'
@@ -5679,6 +5852,7 @@ export type SanityProductFieldsEnum =
   | '_rawHeroImages'
   | '_rawProductImages'
   | '_rawPreviewImages'
+  | '_rawThumbnailImages'
   | '_rawFeaturedImages'
   | '_rawCategory'
   | '_rawFeatures'
@@ -6578,7 +6752,7 @@ export type ProductPageQueryVariables = Exact<{
 }>;
 
 
-export type ProductPageQuery = { sanityProduct: { name: string, new: boolean, description: string, price: number, _rawFeatures: any, productImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }, includes: Array<{ name: string, quantity: number }>, gallery: Array<{ mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }>, related: Array<{ id: string, name: string, slug: { current: string } }> } };
+export type ProductPageQuery = { sanityProduct: { name: string, new: boolean, description: string, price: number, _rawFeatures: any, productImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }, includes: Array<{ name: string, quantity: number }>, gallery: Array<{ mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }>, related: Array<{ id: string, shortName: string, slug: { current: string }, thumbnailImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } } }> } };
 
 export type ImageDataFragment = { alt: string, asset: { gatsbyImageData: any } };
 

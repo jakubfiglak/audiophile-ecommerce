@@ -1,7 +1,11 @@
-import { IGatsbyImageData } from 'gatsby-plugin-image';
-import { IResponsiveImages, IImage } from '../../graphql/types';
-import { CategoryPageQuery } from '../../graphql/generated-types';
-import { Products } from '../components/product-preview-section/types';
+import type { IGatsbyImageData } from 'gatsby-plugin-image';
+import type { IResponsiveImages, IImage } from '../../graphql/types';
+import type {
+  CategoryPageQuery,
+  ProductPageQuery,
+} from '../../graphql/generated-types';
+import type { Products } from '../components/product-preview-section/types';
+import type { Products as RelatedProducts } from '../components/related-products-section/types';
 
 export type SanityImageData = {
   alt: string;
@@ -48,6 +52,19 @@ export function mapSanityProductPreviewDataToProducts(
       images: mapSanityResponsiveImagesToResponsiveImagesData(previewImages),
     })
   );
+}
+
+type SanityRelatedProductsData = ProductPageQuery['sanityProduct']['related'];
+
+export function mapSanityRelatedProductsDataToRelatedProducts(
+  data: SanityRelatedProductsData
+): RelatedProducts {
+  return data.map(({ id, shortName, slug, thumbnailImages }) => ({
+    id,
+    name: shortName,
+    slug: slug.current,
+    images: mapSanityResponsiveImagesToResponsiveImagesData(thumbnailImages),
+  }));
 }
 
 export function splitTitleToTwoLines(title: string) {
