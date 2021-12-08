@@ -8,6 +8,7 @@ import { AboutSection } from '../../components/about-section/AboutSection';
 import { ProductPageQuery } from '../../../graphql/generated-types';
 import { ProductDetailsSection } from '../../components/product-details-section/ProductDetailsSection';
 import { mapSanityResponsiveImagesToResponsiveImagesData } from '../../utils/helpers';
+import { ProductAdditionalInfoSection } from '../../components/product-additional-info-section/ProductAdditionalInfoSection';
 
 const StyledGoBackButton = styled.button`
   margin-top: ${({ theme }) => `calc(${theme.navHeight} + 2rem)`};
@@ -29,7 +30,15 @@ type Props = PageProps<ProductPageQuery>;
 
 const ProductPage = ({ data }: Props) => {
   const product = data.sanityProduct;
-  const { productImages, name, new: isNew, price, description } = product;
+  const {
+    productImages,
+    name,
+    new: isNew,
+    price,
+    description,
+    includes,
+    _rawFeatures,
+  } = product;
 
   return (
     <>
@@ -50,6 +59,10 @@ const ProductPage = ({ data }: Props) => {
         price={price}
         description={description}
       />
+      <ProductAdditionalInfoSection
+        features={_rawFeatures}
+        boxContent={includes}
+      />
       <ExtraMenu />
       <AboutSection />
     </>
@@ -66,9 +79,7 @@ export const query = graphql`
       }
       description
       price
-      features {
-        _rawChildren
-      }
+      _rawFeatures
       includes {
         name
         quantity
