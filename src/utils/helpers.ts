@@ -49,3 +49,19 @@ export function mapSanityProductPreviewDataToProducts(
     })
   );
 }
+
+export function splitTitleToTwoLines(title: string) {
+  const wordsArray = title.split(' ');
+  return {
+    firstLine: wordsArray.slice(0, wordsArray.length - 1).join(' '),
+    secondLine: wordsArray[wordsArray.length - 1],
+  };
+}
+
+export function formatPrice(price: number) {
+  return Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  }).format(price);
+}

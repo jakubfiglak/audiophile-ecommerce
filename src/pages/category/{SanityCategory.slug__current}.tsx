@@ -28,6 +28,26 @@ const StyledHeading = styled.h1`
   }
 `;
 
+type Props = PageProps<CategoryPageQuery>;
+
+const CategoryPage = ({ data }: Props) => {
+  const category = data.sanityCategory;
+  const products = data.allSanityProduct.nodes;
+
+  return (
+    <>
+      <StyledHeading>
+        <LayoutContentWrapper>{category.name}</LayoutContentWrapper>
+      </StyledHeading>
+      <ProductPreviewSection
+        products={mapSanityProductPreviewDataToProducts(products)}
+      />
+      <ExtraMenu />
+      <AboutSection />
+    </>
+  );
+};
+
 export const query = graphql`
   query CategoryPage($id: String!) {
     sanityCategory(id: { eq: $id }) {
@@ -53,25 +73,5 @@ export const query = graphql`
     }
   }
 `;
-
-type Props = PageProps<CategoryPageQuery>;
-
-const CategoryPage = ({ data }: Props) => {
-  const category = data.sanityCategory;
-  const products = data.allSanityProduct.nodes;
-
-  return (
-    <>
-      <StyledHeading>
-        <LayoutContentWrapper>{category.name}</LayoutContentWrapper>
-      </StyledHeading>
-      <ProductPreviewSection
-        products={mapSanityProductPreviewDataToProducts(products)}
-      />
-      <ExtraMenu />
-      <AboutSection />
-    </>
-  );
-};
 
 export default CategoryPage;

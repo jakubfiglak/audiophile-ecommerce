@@ -3,8 +3,10 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { SingleProduct } from './types';
 import { LinkButton } from '../buttons/Button';
+import { StyledNewProductIndicator } from '../new-product-indicator/NewProductIndicator';
 import { useResponsiveImage } from '../../hooks/useResponsiveImage';
 import { breakpointFrom } from '../../styles/breakpoints';
+import { splitTitleToTwoLines } from '../../utils/helpers';
 
 type Props = SingleProduct;
 
@@ -43,14 +45,6 @@ const StyledContentContainer = styled.div`
   }
 `;
 
-const StyledNewParagraph = styled.p`
-  color: ${({ theme }) => theme.colors.primary};
-  text-transform: uppercase;
-  font-size: 1.4rem;
-  line-height: 1.9rem;
-  letter-spacing: 10px;
-`;
-
 const StyledHeading = styled.h2`
   margin: 2.4rem 0;
   font-size: 2.8rem;
@@ -86,21 +80,19 @@ export const ProductPreviewCard = ({
   linkTo,
 }: Props) => {
   const image = useResponsiveImage(images);
-  const nameWordsArray = name.split(' ');
-  const firstLineWords = nameWordsArray
-    .slice(0, nameWordsArray.length - 1)
-    .join(' ');
-  const secondLineWord = nameWordsArray[nameWordsArray.length - 1];
+  const { firstLine, secondLine } = splitTitleToTwoLines(name);
 
   return (
     <StyledContainer>
       <StyledImage image={image.data} alt={image.alt} />
       <StyledContentContainer>
-        {isNew ? <StyledNewParagraph>New product</StyledNewParagraph> : null}
+        {isNew ? (
+          <StyledNewProductIndicator>New product</StyledNewProductIndicator>
+        ) : null}
         <StyledHeading>
-          {firstLineWords}
+          {firstLine}
           <br />
-          {secondLineWord}
+          {secondLine}
         </StyledHeading>
         <StyledParagraph>{description}</StyledParagraph>
         <LinkButton to={`/product/${linkTo}`} label="See product" />
