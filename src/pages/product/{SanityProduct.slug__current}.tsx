@@ -9,6 +9,7 @@ import { ProductPageQuery } from '../../../graphql/generated-types';
 import { ProductDetailsSection } from '../../components/product-details-section/ProductDetailsSection';
 import { mapSanityResponsiveImagesToResponsiveImagesData } from '../../utils/helpers';
 import { ProductAdditionalInfoSection } from '../../components/product-additional-info-section/ProductAdditionalInfoSection';
+import { ProductGallerySection } from '../../components/product-gallery-section/ProductGallerySection';
 
 const StyledGoBackButton = styled.button`
   margin-top: ${({ theme }) => `calc(${theme.navHeight} + 2rem)`};
@@ -38,6 +39,7 @@ const ProductPage = ({ data }: Props) => {
     description,
     includes,
     _rawFeatures,
+    gallery,
   } = product;
 
   return (
@@ -62,6 +64,17 @@ const ProductPage = ({ data }: Props) => {
       <ProductAdditionalInfoSection
         features={_rawFeatures}
         boxContent={includes}
+      />
+      <ProductGallerySection
+        galleryItemOneImages={mapSanityResponsiveImagesToResponsiveImagesData(
+          gallery[0]
+        )}
+        galleryItemTwoImages={mapSanityResponsiveImagesToResponsiveImagesData(
+          gallery[1]
+        )}
+        galleryItemThreeImages={mapSanityResponsiveImagesToResponsiveImagesData(
+          gallery[2]
+        )}
       />
       <ExtraMenu />
       <AboutSection />
