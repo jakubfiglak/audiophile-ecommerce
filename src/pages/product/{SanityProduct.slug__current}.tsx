@@ -6,6 +6,8 @@ import { LayoutContentWrapper } from '../../components/layout/LayoutContentWrapp
 import { ExtraMenu } from '../../components/menu/ExtraMenu';
 import { AboutSection } from '../../components/about-section/AboutSection';
 import { ProductPageQuery } from '../../../graphql/generated-types';
+import { ProductDetailsSection } from '../../components/product-details-section/ProductDetailsSection';
+import { mapSanityResponsiveImagesToResponsiveImagesData } from '../../utils/helpers';
 
 const StyledGoBackButton = styled.button`
   margin-top: ${({ theme }) => `calc(${theme.navHeight} + 2rem)`};
@@ -26,17 +28,31 @@ const StyledGoBackButton = styled.button`
 type Props = PageProps<ProductPageQuery>;
 
 const ProductPage = ({ data }: Props) => {
+  const product = data.sanityProduct;
+  const { productImages, name, new: isNew, price, description } = product;
+
   return (
-    <LayoutContentWrapper>
-      <StyledGoBackButton
-        onClick={() => navigate(-1)}
-        aria-label="Go to previous page"
-      >
-        Go Back
-      </StyledGoBackButton>
+    <>
+      <LayoutContentWrapper>
+        <StyledGoBackButton
+          onClick={() => navigate(-1)}
+          aria-label="Go to previous page"
+        >
+          Go Back
+        </StyledGoBackButton>
+      </LayoutContentWrapper>
+      <ProductDetailsSection
+        productImages={mapSanityResponsiveImagesToResponsiveImagesData(
+          productImages
+        )}
+        isNew={isNew}
+        name={name}
+        price={price}
+        description={description}
+      />
       <ExtraMenu />
       <AboutSection />
-    </LayoutContentWrapper>
+    </>
   );
 };
 

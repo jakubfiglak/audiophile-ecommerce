@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import { Link } from 'gatsby';
 import styled, { css } from 'styled-components';
 
@@ -58,21 +58,17 @@ const StyledLink = styled(Link)<StylesProps>`
 `;
 
 export type CommonProps = StylesProps & { label: string };
-export type ButtonProps = CommonProps & { onClick?: () => void };
+export type ButtonProps = CommonProps & ButtonHTMLAttributes<HTMLButtonElement>;
 export type LinkProps = CommonProps & { to: string };
 
 export const Button = ({
   label,
   $secondary,
   $tertiary,
-  onClick,
+  ...rest
 }: ButtonProps) => {
   return (
-    <StyledButton
-      $secondary={$secondary}
-      $tertiary={$tertiary}
-      onClick={onClick}
-    >
+    <StyledButton $secondary={$secondary} $tertiary={$tertiary} {...rest}>
       {label}
     </StyledButton>
   );
