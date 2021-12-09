@@ -8,6 +8,7 @@ import { AboutSection } from '../../components/about-section/AboutSection';
 import { ProductPageQuery } from '../../../graphql/generated-types';
 import { ProductDetailsSection } from '../../components/product-details-section/ProductDetailsSection';
 import {
+  mapSanityMainImageToImageData,
   mapSanityRelatedProductsDataToRelatedProducts,
   mapSanityResponsiveImagesToResponsiveImagesData,
 } from '../../utils/helpers';
@@ -36,10 +37,12 @@ type Props = PageProps<ProductPageQuery>;
 const ProductPage = ({ data }: Props) => {
   const product = data.sanityProduct;
   const {
+    id,
     productImages,
     name,
     new: isNew,
     price,
+    cartImage,
     description,
     includes,
     _rawFeatures,
@@ -58,9 +61,11 @@ const ProductPage = ({ data }: Props) => {
         </StyledGoBackButton>
       </LayoutContentWrapper>
       <ProductDetailsSection
+        id={id}
         productImages={mapSanityResponsiveImagesToResponsiveImagesData(
           productImages
         )}
+        cartImage={mapSanityMainImageToImageData(cartImage)}
         isNew={isNew}
         name={name}
         price={price}
@@ -93,6 +98,7 @@ const ProductPage = ({ data }: Props) => {
 export const query = graphql`
   query ProductPage($id: String!) {
     sanityProduct(id: { eq: $id }) {
+      id
       name
       new
       productImages {
@@ -101,6 +107,9 @@ export const query = graphql`
       description
       price
       _rawFeatures
+      cartImage {
+        ...ImageData
+      }
       includes {
         name
         quantity

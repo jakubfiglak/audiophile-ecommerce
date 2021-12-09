@@ -558,6 +558,7 @@ export type SanityProduct = SanityDocument & Node & {
   shortName: Maybe<Scalars['String']>;
   slug: Maybe<SanitySlug>;
   image: Maybe<SanityMainImage>;
+  cartImage: Maybe<SanityMainImage>;
   heroImages: Maybe<SanityResponsiveImages>;
   productImages: Maybe<SanityResponsiveImages>;
   previewImages: Maybe<SanityResponsiveImages>;
@@ -574,6 +575,7 @@ export type SanityProduct = SanityDocument & Node & {
   features: Maybe<Array<Maybe<SanityBlock>>>;
   _rawSlug: Maybe<Scalars['JSON']>;
   _rawImage: Maybe<Scalars['JSON']>;
+  _rawCartImage: Maybe<Scalars['JSON']>;
   _rawHeroImages: Maybe<Scalars['JSON']>;
   _rawProductImages: Maybe<Scalars['JSON']>;
   _rawPreviewImages: Maybe<Scalars['JSON']>;
@@ -614,6 +616,11 @@ export type SanityProduct_RawSlugArgs = {
 
 
 export type SanityProduct_RawImageArgs = {
+  resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
+};
+
+
+export type SanityProduct_RawCartImageArgs = {
   resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
 };
 
@@ -1553,6 +1560,7 @@ export type QuerySanityProductArgs = {
   shortName: InputMaybe<StringQueryOperatorInput>;
   slug: InputMaybe<SanitySlugFilterInput>;
   image: InputMaybe<SanityMainImageFilterInput>;
+  cartImage: InputMaybe<SanityMainImageFilterInput>;
   heroImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   productImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   previewImages: InputMaybe<SanityResponsiveImagesFilterInput>;
@@ -1569,6 +1577,7 @@ export type QuerySanityProductArgs = {
   features: InputMaybe<SanityBlockFilterListInput>;
   _rawSlug: InputMaybe<JsonQueryOperatorInput>;
   _rawImage: InputMaybe<JsonQueryOperatorInput>;
+  _rawCartImage: InputMaybe<JsonQueryOperatorInput>;
   _rawHeroImages: InputMaybe<JsonQueryOperatorInput>;
   _rawProductImages: InputMaybe<JsonQueryOperatorInput>;
   _rawPreviewImages: InputMaybe<JsonQueryOperatorInput>;
@@ -4349,6 +4358,7 @@ export type SanityProductFilterInput = {
   shortName: InputMaybe<StringQueryOperatorInput>;
   slug: InputMaybe<SanitySlugFilterInput>;
   image: InputMaybe<SanityMainImageFilterInput>;
+  cartImage: InputMaybe<SanityMainImageFilterInput>;
   heroImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   productImages: InputMaybe<SanityResponsiveImagesFilterInput>;
   previewImages: InputMaybe<SanityResponsiveImagesFilterInput>;
@@ -4365,6 +4375,7 @@ export type SanityProductFilterInput = {
   features: InputMaybe<SanityBlockFilterListInput>;
   _rawSlug: InputMaybe<JsonQueryOperatorInput>;
   _rawImage: InputMaybe<JsonQueryOperatorInput>;
+  _rawCartImage: InputMaybe<JsonQueryOperatorInput>;
   _rawHeroImages: InputMaybe<JsonQueryOperatorInput>;
   _rawProductImages: InputMaybe<JsonQueryOperatorInput>;
   _rawPreviewImages: InputMaybe<JsonQueryOperatorInput>;
@@ -4508,6 +4519,74 @@ export type SanityProductFieldsEnum =
   | 'image____rawAsset'
   | 'image____rawHotspot'
   | 'image____rawCrop'
+  | 'cartImage____key'
+  | 'cartImage____type'
+  | 'cartImage___asset____id'
+  | 'cartImage___asset____type'
+  | 'cartImage___asset____createdAt'
+  | 'cartImage___asset____updatedAt'
+  | 'cartImage___asset____rev'
+  | 'cartImage___asset____key'
+  | 'cartImage___asset___originalFilename'
+  | 'cartImage___asset___label'
+  | 'cartImage___asset___title'
+  | 'cartImage___asset___description'
+  | 'cartImage___asset___altText'
+  | 'cartImage___asset___sha1hash'
+  | 'cartImage___asset___extension'
+  | 'cartImage___asset___mimeType'
+  | 'cartImage___asset___size'
+  | 'cartImage___asset___assetId'
+  | 'cartImage___asset___uploadId'
+  | 'cartImage___asset___path'
+  | 'cartImage___asset___url'
+  | 'cartImage___asset___metadata____key'
+  | 'cartImage___asset___metadata____type'
+  | 'cartImage___asset___metadata___lqip'
+  | 'cartImage___asset___metadata___blurHash'
+  | 'cartImage___asset___metadata___hasAlpha'
+  | 'cartImage___asset___metadata___isOpaque'
+  | 'cartImage___asset___metadata____rawLocation'
+  | 'cartImage___asset___metadata____rawDimensions'
+  | 'cartImage___asset___metadata____rawPalette'
+  | 'cartImage___asset___source____key'
+  | 'cartImage___asset___source____type'
+  | 'cartImage___asset___source___name'
+  | 'cartImage___asset___source___id'
+  | 'cartImage___asset___source___url'
+  | 'cartImage___asset____rawMetadata'
+  | 'cartImage___asset____rawSource'
+  | 'cartImage___asset___gatsbyImageData'
+  | 'cartImage___asset___id'
+  | 'cartImage___asset___parent___id'
+  | 'cartImage___asset___parent___children'
+  | 'cartImage___asset___children'
+  | 'cartImage___asset___children___id'
+  | 'cartImage___asset___children___children'
+  | 'cartImage___asset___internal___content'
+  | 'cartImage___asset___internal___contentDigest'
+  | 'cartImage___asset___internal___description'
+  | 'cartImage___asset___internal___fieldOwners'
+  | 'cartImage___asset___internal___ignoreType'
+  | 'cartImage___asset___internal___mediaType'
+  | 'cartImage___asset___internal___owner'
+  | 'cartImage___asset___internal___type'
+  | 'cartImage___hotspot____key'
+  | 'cartImage___hotspot____type'
+  | 'cartImage___hotspot___x'
+  | 'cartImage___hotspot___y'
+  | 'cartImage___hotspot___height'
+  | 'cartImage___hotspot___width'
+  | 'cartImage___crop____key'
+  | 'cartImage___crop____type'
+  | 'cartImage___crop___top'
+  | 'cartImage___crop___bottom'
+  | 'cartImage___crop___left'
+  | 'cartImage___crop___right'
+  | 'cartImage___alt'
+  | 'cartImage____rawAsset'
+  | 'cartImage____rawHotspot'
+  | 'cartImage____rawCrop'
   | 'heroImages____key'
   | 'heroImages____type'
   | 'heroImages___mobile____key'
@@ -5453,6 +5532,48 @@ export type SanityProductFieldsEnum =
   | 'related___image____rawAsset'
   | 'related___image____rawHotspot'
   | 'related___image____rawCrop'
+  | 'related___cartImage____key'
+  | 'related___cartImage____type'
+  | 'related___cartImage___asset____id'
+  | 'related___cartImage___asset____type'
+  | 'related___cartImage___asset____createdAt'
+  | 'related___cartImage___asset____updatedAt'
+  | 'related___cartImage___asset____rev'
+  | 'related___cartImage___asset____key'
+  | 'related___cartImage___asset___originalFilename'
+  | 'related___cartImage___asset___label'
+  | 'related___cartImage___asset___title'
+  | 'related___cartImage___asset___description'
+  | 'related___cartImage___asset___altText'
+  | 'related___cartImage___asset___sha1hash'
+  | 'related___cartImage___asset___extension'
+  | 'related___cartImage___asset___mimeType'
+  | 'related___cartImage___asset___size'
+  | 'related___cartImage___asset___assetId'
+  | 'related___cartImage___asset___uploadId'
+  | 'related___cartImage___asset___path'
+  | 'related___cartImage___asset___url'
+  | 'related___cartImage___asset____rawMetadata'
+  | 'related___cartImage___asset____rawSource'
+  | 'related___cartImage___asset___gatsbyImageData'
+  | 'related___cartImage___asset___id'
+  | 'related___cartImage___asset___children'
+  | 'related___cartImage___hotspot____key'
+  | 'related___cartImage___hotspot____type'
+  | 'related___cartImage___hotspot___x'
+  | 'related___cartImage___hotspot___y'
+  | 'related___cartImage___hotspot___height'
+  | 'related___cartImage___hotspot___width'
+  | 'related___cartImage___crop____key'
+  | 'related___cartImage___crop____type'
+  | 'related___cartImage___crop___top'
+  | 'related___cartImage___crop___bottom'
+  | 'related___cartImage___crop___left'
+  | 'related___cartImage___crop___right'
+  | 'related___cartImage___alt'
+  | 'related___cartImage____rawAsset'
+  | 'related___cartImage____rawHotspot'
+  | 'related___cartImage____rawCrop'
   | 'related___heroImages____key'
   | 'related___heroImages____type'
   | 'related___heroImages___mobile____key'
@@ -5654,6 +5775,12 @@ export type SanityProductFieldsEnum =
   | 'related___related___image____rawAsset'
   | 'related___related___image____rawHotspot'
   | 'related___related___image____rawCrop'
+  | 'related___related___cartImage____key'
+  | 'related___related___cartImage____type'
+  | 'related___related___cartImage___alt'
+  | 'related___related___cartImage____rawAsset'
+  | 'related___related___cartImage____rawHotspot'
+  | 'related___related___cartImage____rawCrop'
   | 'related___related___heroImages____key'
   | 'related___related___heroImages____type'
   | 'related___related___heroImages____rawMobile'
@@ -5727,6 +5854,7 @@ export type SanityProductFieldsEnum =
   | 'related___related___related___features'
   | 'related___related___related____rawSlug'
   | 'related___related___related____rawImage'
+  | 'related___related___related____rawCartImage'
   | 'related___related___related____rawHeroImages'
   | 'related___related___related____rawProductImages'
   | 'related___related___related____rawPreviewImages'
@@ -5749,6 +5877,7 @@ export type SanityProductFieldsEnum =
   | 'related___related___features____rawChildren'
   | 'related___related____rawSlug'
   | 'related___related____rawImage'
+  | 'related___related____rawCartImage'
   | 'related___related____rawHeroImages'
   | 'related___related____rawProductImages'
   | 'related___related____rawPreviewImages'
@@ -5787,6 +5916,7 @@ export type SanityProductFieldsEnum =
   | 'related___features____rawChildren'
   | 'related____rawSlug'
   | 'related____rawImage'
+  | 'related____rawCartImage'
   | 'related____rawHeroImages'
   | 'related____rawProductImages'
   | 'related____rawPreviewImages'
@@ -5849,6 +5979,7 @@ export type SanityProductFieldsEnum =
   | 'features____rawChildren'
   | '_rawSlug'
   | '_rawImage'
+  | '_rawCartImage'
   | '_rawHeroImages'
   | '_rawProductImages'
   | '_rawPreviewImages'
@@ -6752,7 +6883,7 @@ export type ProductPageQueryVariables = Exact<{
 }>;
 
 
-export type ProductPageQuery = { sanityProduct: { name: string, new: boolean, description: string, price: number, _rawFeatures: any, productImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }, includes: Array<{ name: string, quantity: number }>, gallery: Array<{ mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }>, related: Array<{ id: string, shortName: string, slug: { current: string }, thumbnailImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } } }> } };
+export type ProductPageQuery = { sanityProduct: { id: string, name: string, new: boolean, description: string, price: number, _rawFeatures: any, productImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }, cartImage: { alt: string, asset: { gatsbyImageData: any } }, includes: Array<{ name: string, quantity: number }>, gallery: Array<{ mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } }>, related: Array<{ id: string, shortName: string, slug: { current: string }, thumbnailImages: { mobile: { alt: string, asset: { gatsbyImageData: any } }, tablet: { alt: string, asset: { gatsbyImageData: any } }, desktop: { alt: string, asset: { gatsbyImageData: any } } } }> } };
 
 export type ImageDataFragment = { alt: string, asset: { gatsbyImageData: any } };
 

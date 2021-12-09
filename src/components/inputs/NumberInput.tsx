@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledContainer = styled.fieldset`
@@ -37,34 +37,30 @@ const StyledInput = styled.input`
   width: 4rem;
 `;
 
-export const NumberInput = () => {
-  const [value, setValue] = useState(1);
+type Props = {
+  value: number;
+  onDecrementClick: () => void;
+  onIncrementClick: () => void;
+};
 
-  function handleDecrement() {
-    if (value > 1) {
-      setValue(value - 1);
-    }
-  }
-
-  function handleIncrement() {
-    if (value < 9) {
-      setValue(value + 1);
-    }
-  }
-
+export const NumberInput = ({
+  value,
+  onDecrementClick,
+  onIncrementClick,
+}: Props) => {
   return (
     <StyledContainer>
       <button
         type="button"
-        onClick={handleDecrement}
+        onClick={onDecrementClick}
         aria-label="decrease quantity"
       >
         -
       </button>
-      <StyledInput type="number" value={value} disabled />
+      <StyledInput type="text" value={value} disabled />
       <button
         type="button"
-        onClick={handleIncrement}
+        onClick={onIncrementClick}
         aria-label="increase quantity"
       >
         +

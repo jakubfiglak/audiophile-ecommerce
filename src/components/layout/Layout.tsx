@@ -6,9 +6,7 @@ import { Footer } from '../footer/Footer';
 import { GlobalStyle } from '../../styles/GlobalStyle';
 import { theme } from '../../styles/theme';
 
-type Props = {
-  children: ReactNode;
-} & PageProps;
+type Props = Omit<PageProps, 'children'> & { children: ReactNode };
 
 export const Layout = ({ children, location }: Props) => {
   return (
