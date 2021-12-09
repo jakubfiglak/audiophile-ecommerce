@@ -8,6 +8,7 @@ import CartIcon from '../../assets/svg/icon-cart.inline.svg';
 import Logo from '../../assets/svg/logo.inline.svg';
 import { breakpointFrom } from '../../styles/breakpoints';
 import { MenuToggle } from '../menu/MenuToggle';
+import { useCartState } from '../../context/cart/useCartState';
 
 type Props = {
   backgroundBlack: boolean;
@@ -54,6 +55,41 @@ const StyledContainer = styled.div`
       display: none;
     }
   }
+`;
+
+const StyledCartIconContainer = styled.div`
+  position: relative;
+`;
+
+const StyledCartButton = styled.button`
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+
+  path: {
+    transition: ${({ theme }) => theme.transition};
+  }
+
+  :hover path {
+    fill: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+const StyledCartItemsCount = styled(motion.span)`
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 1rem;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.primary};
 `;
 
 const StyledDesktopMenu = styled(DesktopMenu)`
@@ -108,12 +144,24 @@ const variants = {
   },
 };
 
+const cartItemsCountVariants = {
+  hidden: { scale: 0 },
+  show: { scale: 1 },
+  exit: { scale: 0 },
+};
+
 export const Header = ({ backgroundBlack }: Props) => {
+  const { items } = useCartState();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleBurgerClick = useCallback(() => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-  }, [setIsMobileMenuOpen, isMobileMenuOpen]);
+  }, [isMobileMenuOpen]);
+
+  const handleCartClick = useCallback(() => {
+    setIsCartOpen(!isCartOpen);
+  }, [isCartOpen]);
 
   return (
     <>
@@ -127,14 +175,34 @@ export const Header = ({ backgroundBlack }: Props) => {
             />
             <Logo className="logo" />
             <StyledDesktopMenu />
-            <CartIcon className="cart" />
+            <StyledCartIconContainer>
+              <StyledCartButton
+                onClick={handleCartClick}
+                type="button"
+                aria-label={isCartOpen ? 'Close cart' : 'Open cart'}
+              >
+                <CartIcon className="cart" />
+              </StyledCartButton>
+              <AnimatePresence>
+                {items.length > 0 ? (
+                  <StyledCartItemsCount
+                    variants={cartItemsCountVariants}
+                    initial="hidden"
+                    animate="show"
+                    exit="exit"
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
+                    {items.length}
+                  </StyledCartItemsCount>
+                ) : null}
+              </AnimatePresence>
+            </StyledCartIconContainer>
           </StyledContainer>
         </LayoutContentWrapper>
       </StyledHeader>
       <AnimatePresence>
         {isMobileMenuOpen ? (
           <StyledBackdrop
-            key="mobile-menu"
             variants={variants}
             initial="hidden"
             animate="show"
