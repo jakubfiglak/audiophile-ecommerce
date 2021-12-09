@@ -34,7 +34,7 @@ const StyledContentContainer = styled.div`
 
   ${breakpointFrom('tablet')} {
     margin-top: ${({ theme }) => `calc(216px - ${theme.navHeight})`};
-    padding: 0 19.5rem;
+    padding: 0 15.5rem;
   }
 
   ${breakpointFrom('desktop')} {
