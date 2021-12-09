@@ -102,8 +102,6 @@ export const AboutSection = () => {
     mapSanityResponsiveImagesToResponsiveImagesData(aboutSection.images)
   );
 
-  console.log(aboutSection);
-
   return (
     <StyledContainer>
       <LayoutContentWrapper>

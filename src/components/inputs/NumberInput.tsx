@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-const StyledContainer = styled.fieldset`
+type StyleProps = {
+  $small?: boolean;
+};
+
+const StyledContainer = styled.fieldset<StyleProps>`
   border: 0;
   margin: 0;
   padding: 0;
@@ -11,12 +15,12 @@ const StyledContainer = styled.fieldset`
     border: 0;
     background: transparent;
     cursor: pointer;
-    width: 4rem;
+    width: ${({ $small }) => ($small ? '3.2rem' : '4rem')};
     font-size: 1.3rem;
     line-height: 1.8rem;
     height: 100%;
     opacity: 0.25;
-    padding: 1.5rem 0;
+    padding: ${({ $small }) => ($small ? '0.7rem 0' : '1.5rem 0')};
     transition: ${({ theme }) => theme.transition};
 
     :hover {
@@ -26,45 +30,43 @@ const StyledContainer = styled.fieldset`
   }
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled.input<StyleProps>`
   font-size: 1.3rem;
   line-height: 1.8rem;
   letter-spacing: 1px;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   border: 0;
   background: transparent;
-  padding: 1.5rem;
-  width: 4rem;
+  padding: ${({ $small }) => ($small ? '0.7rem' : '1.5rem')};
+  width: ${({ $small }) => ($small ? '3.2rem' : '4rem')};
+  text-align: center;
 `;
 
-export const NumberInput = () => {
-  const [value, setValue] = useState(1);
+type Props = {
+  value: number;
+  onDecrementClick: () => void;
+  onIncrementClick: () => void;
+} & StyleProps;
 
-  function handleDecrement() {
-    if (value > 1) {
-      setValue(value - 1);
-    }
-  }
-
-  function handleIncrement() {
-    if (value < 9) {
-      setValue(value + 1);
-    }
-  }
-
+export const NumberInput = ({
+  value,
+  onDecrementClick,
+  onIncrementClick,
+  $small,
+}: Props) => {
   return (
-    <StyledContainer>
+    <StyledContainer $small={$small}>
       <button
         type="button"
-        onClick={handleDecrement}
+        onClick={onDecrementClick}
         aria-label="decrease quantity"
       >
         -
       </button>
-      <StyledInput type="number" value={value} disabled />
+      <StyledInput type="text" value={value} disabled $small={$small} />
       <button
         type="button"
-        onClick={handleIncrement}
+        onClick={onIncrementClick}
         aria-label="increase quantity"
       >
         +

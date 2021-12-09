@@ -36,6 +36,7 @@ const styles = ({ $secondary, $tertiary }: StylesProps) => css`
   padding: 1.5rem 3rem;
   border: none;
   text-transform: uppercase;
+  text-align: center;
   cursor: pointer;
   transition: ${({ theme }) => theme.transition};
 
@@ -59,7 +60,7 @@ const StyledLink = styled(Link)<StylesProps>`
 
 export type CommonProps = StylesProps & { label: string };
 export type ButtonProps = CommonProps & ButtonHTMLAttributes<HTMLButtonElement>;
-export type LinkProps = CommonProps & { to: string };
+export type LinkProps = CommonProps & { to: string; className?: string };
 
 export const Button = ({
   label,
@@ -74,9 +75,20 @@ export const Button = ({
   );
 };
 
-export const LinkButton = ({ label, $secondary, $tertiary, to }: LinkProps) => {
+export const LinkButton = ({
+  label,
+  $secondary,
+  $tertiary,
+  to,
+  className,
+}: LinkProps) => {
   return (
-    <StyledLink $secondary={$secondary} $tertiary={$tertiary} to={to}>
+    <StyledLink
+      $secondary={$secondary}
+      $tertiary={$tertiary}
+      to={to}
+      className={className}
+    >
       {label}
     </StyledLink>
   );

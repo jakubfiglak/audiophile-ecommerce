@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { IResponsiveImages } from '../../../graphql/types';
+import { IResponsiveImages, IImage } from '../../../graphql/types';
 import { useResponsiveImage } from '../../hooks/useResponsiveImage';
 import { Button } from '../buttons/Button';
 import { StyledNewProductIndicator } from '../new-product-indicator/NewProductIndicator';
@@ -9,6 +9,8 @@ import { formatPrice, splitTitleToTwoLines } from '../../utils/helpers';
 import { NumberInput } from '../inputs/NumberInput';
 import { LayoutContentWrapper } from '../layout/LayoutContentWrapper';
 import { breakpointFrom } from '../../styles/breakpoints';
+import { useNumberInput } from '../../hooks/useNumberInput';
+import { useCartState } from '../../context/cart/useCartState';
 
 const StyledSection = styled.section`
   margin-top: 2.4rem;
@@ -86,20 +88,27 @@ const StyledForm = styled.form`
 `;
 
 type Props = {
+  id: string;
   productImages: IResponsiveImages;
   isNew: boolean;
   name: string;
   description: string;
   price: number;
+  cartImage: IImage;
 };
 
 export const ProductDetailsSection = ({
+  id,
   productImages,
   isNew,
   name,
   description,
   price,
+  cartImage,
 }: Props) => {
+  const { value, handleIncrement, handleDecrement } = useNumberInput();
+  const { addItem } = useCartState();
+
   const image = useResponsiveImage(productImages);
   const { firstLine, secondLine } = splitTitleToTwoLines(name);
   const formattedPrice = formatPrice(price);
@@ -123,9 +132,20 @@ export const ProductDetailsSection = ({
             <StyledForm
               onSubmit={(e) => {
                 e.preventDefault();
+                addItem({
+                  id,
+                  name,
+                  price,
+                  quantity: value,
+                  image: cartImage,
+                });
               }}
             >
-              <NumberInput />
+              <NumberInput
+                value={value}
+                onDecrementClick={handleDecrement}
+                onIncrementClick={handleIncrement}
+              />
               <Button label="Add to cart" type="submit" />
             </StyledForm>
           </StyledContentContainer>
