@@ -1,7 +1,7 @@
 import React, { useReducer, ReactNode, useMemo } from 'react';
 import CartContext from './cartContext';
 import cartReducer from './cartReducer';
-import { CartItem, State } from './types';
+import { CartItem, State, RemoveItemArgs } from './types';
 
 type Props = {
   children: ReactNode;
@@ -27,10 +27,10 @@ export const CartStateProvider = ({ children }: Props) => {
   }
 
   // Remove item from cart
-  function removeItem(item: CartItem) {
+  function removeItem(data: RemoveItemArgs) {
     dispatch({
       type: 'REMOVE_ITEM',
-      payload: item,
+      payload: data,
     });
   }
 

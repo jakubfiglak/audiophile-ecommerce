@@ -37,14 +37,12 @@ export default (state: State, action: Action): State => {
           ...state,
           items: newItems,
           totalPrice:
-            state.totalPrice - action.payload.price * action.payload.quantity,
+            state.totalPrice -
+            state.items[existingItemIdx].price * action.payload.quantity,
         };
       }
       return {
         ...state,
-        items: [...state.items, action.payload],
-        totalPrice:
-          state.totalPrice - action.payload.price * action.payload.quantity,
       };
     }
 
