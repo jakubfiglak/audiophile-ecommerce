@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
+import { globalHistory } from '@reach/router';
 import styled from 'styled-components';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LayoutContentWrapper } from '../layout/LayoutContentWrapper';
@@ -9,6 +10,8 @@ import Logo from '../../assets/svg/logo.inline.svg';
 import { breakpointFrom } from '../../styles/breakpoints';
 import { MenuToggle } from '../menu/MenuToggle';
 import { useCartState } from '../../context/cart/useCartState';
+import { Cart } from '../cart/Cart';
+import { useClickOutside } from '../../hooks/useClickOutside';
 
 type Props = {
   backgroundBlack: boolean;
@@ -155,6 +158,23 @@ export const Header = ({ backgroundBlack }: Props) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const cartRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(mobileMenuRef, () => setIsMobileMenuOpen(false));
+  useClickOutside(cartRef, () => setIsCartOpen(false));
+
+  useEffect(() => {
+    globalHistory.listen(({ action }) => {
+      if (action === 'PUSH' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+      if (action === 'PUSH' && isCartOpen) {
+        setIsCartOpen(false);
+      }
+    });
+  }, []);
+
   const handleBurgerClick = useCallback(() => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   }, [isMobileMenuOpen]);
@@ -172,16 +192,18 @@ export const Header = ({ backgroundBlack }: Props) => {
               toggle={handleBurgerClick}
               isOpen={isMobileMenuOpen}
               className="hamburger"
+              disabled={isCartOpen}
             />
             <Logo className="logo" />
             <StyledDesktopMenu />
-            <StyledCartIconContainer>
+            <StyledCartIconContainer className="cart">
               <StyledCartButton
                 onClick={handleCartClick}
+                disabled={isMobileMenuOpen}
                 type="button"
                 aria-label={isCartOpen ? 'Close cart' : 'Open cart'}
               >
-                <CartIcon className="cart" />
+                <CartIcon />
               </StyledCartButton>
               <AnimatePresence>
                 {items.length > 0 ? (
@@ -208,9 +230,23 @@ export const Header = ({ backgroundBlack }: Props) => {
             animate="show"
             exit="exit"
           >
-            <StyledMobileMenuContainer>
+            <StyledMobileMenuContainer ref={mobileMenuRef}>
               <StyledMobileMenu />
             </StyledMobileMenuContainer>
+          </StyledBackdrop>
+        ) : null}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isCartOpen ? (
+          <StyledBackdrop
+            variants={variants}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+          >
+            <div ref={cartRef}>
+              <Cart />
+            </div>
           </StyledBackdrop>
         ) : null}
       </AnimatePresence>

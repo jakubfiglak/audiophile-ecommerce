@@ -21,10 +21,16 @@ type Props = {
   toggle: () => void;
   isOpen: boolean;
   className?: string;
+  disabled?: boolean;
 };
 
-export const MenuToggle = ({ toggle, isOpen, className }: Props) => (
-  <StyledButton onClick={toggle} type="button" className={className}>
+export const MenuToggle = ({ toggle, isOpen, className, disabled }: Props) => (
+  <StyledButton
+    onClick={toggle}
+    type="button"
+    className={className}
+    disabled={disabled}
+  >
     <svg width="23" height="23" viewBox="0 0 23 20">
       <Path
         variants={{
