@@ -36,8 +36,6 @@ const StyledContainer = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   ${breakpointFrom('tablet')} {
-    margin: 0 4rem;
-
     .logo {
       margin-left: 4.2rem;
     }
@@ -48,8 +46,6 @@ const StyledContainer = styled.div`
   }
 
   ${breakpointFrom('desktop')} {
-    margin: 0;
-
     .logo {
       margin-left: 0;
     }
