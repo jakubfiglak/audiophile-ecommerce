@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledContainer = styled.fieldset`
+type StyleProps = {
+  $small?: boolean;
+};
+
+const StyledContainer = styled.fieldset<StyleProps>`
   border: 0;
   margin: 0;
   padding: 0;
@@ -11,12 +15,12 @@ const StyledContainer = styled.fieldset`
     border: 0;
     background: transparent;
     cursor: pointer;
-    width: 4rem;
+    width: ${({ $small }) => ($small ? '3.2rem' : '4rem')};
     font-size: 1.3rem;
     line-height: 1.8rem;
     height: 100%;
     opacity: 0.25;
-    padding: 1.5rem 0;
+    padding: ${({ $small }) => ($small ? '0.7rem 0' : '1.5rem 0')};
     transition: ${({ theme }) => theme.transition};
 
     :hover {
@@ -26,30 +30,32 @@ const StyledContainer = styled.fieldset`
   }
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled.input<StyleProps>`
   font-size: 1.3rem;
   line-height: 1.8rem;
   letter-spacing: 1px;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   border: 0;
   background: transparent;
-  padding: 1.5rem;
-  width: 4rem;
+  padding: ${({ $small }) => ($small ? '0.7rem' : '1.5rem')};
+  width: ${({ $small }) => ($small ? '3.2rem' : '4rem')};
+  text-align: center;
 `;
 
 type Props = {
   value: number;
   onDecrementClick: () => void;
   onIncrementClick: () => void;
-};
+} & StyleProps;
 
 export const NumberInput = ({
   value,
   onDecrementClick,
   onIncrementClick,
+  $small,
 }: Props) => {
   return (
-    <StyledContainer>
+    <StyledContainer $small={$small}>
       <button
         type="button"
         onClick={onDecrementClick}
@@ -57,7 +63,7 @@ export const NumberInput = ({
       >
         -
       </button>
-      <StyledInput type="text" value={value} disabled />
+      <StyledInput type="text" value={value} disabled $small={$small} />
       <button
         type="button"
         onClick={onIncrementClick}
